@@ -24,16 +24,24 @@ db.once("open", function () {
   console.log(" Mongoose Connected successfully");
 });
 
-app.use(
-  "/api",
-  createProxyMiddleware({
-    target: "https://mern-ticketbooking-api.vercel.app",
-    changeOrigin: true,
-  })
-);
+// app.use(
+//   "/api",
+//   createProxyMiddleware({
+//     target: "https://mern-ticketbooking-api.vercel.app",
+//     changeOrigin: true,
+//   })
+// );
+
+app.use(cors(
+    {
+        origin: ["https://mern-ticketbooking-admin.vercel.app"],
+        methods: ["POST", "GET"],
+        credentials: true
+    }
+));
 
 app.use(cookieParser());
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoute);
