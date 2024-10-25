@@ -27,7 +27,7 @@ db.once("open", function () {
 app.use(
   "/api",
   createProxyMiddleware({
-    target: "mern-ticketbooking-api.vercel.app",
+    target: "https://mern-ticketbooking-api.vercel.app",
     changeOrigin: true,
   })
 );
@@ -41,6 +41,9 @@ app.use("/api/users", usersRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/hotels", hotelRoute);
 
+app.get("/", (req, res) => {
+    res.json("Hello");
+})
 app.listen(8000, () => {
   console.log("App running on the PORT 8000 Successfully");
 });
