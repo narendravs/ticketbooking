@@ -1,11 +1,10 @@
 {
   "name": "admin",
   "version": "0.1.0",
+  "main": "index.js",
+  "type": "module",
    "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+     "start": "nodemon index.js"
   },
   "dependencies": {
     "@emotion/react": "^11.11.1",
