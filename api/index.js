@@ -7,7 +7,7 @@ import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import roomsRoute from "./routes/rooms.js";
 import hotelRoute from "./routes/hotels.js";
-//import { createProxyMiddleware } from "http-proxy-middleware";
+import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
 dotenv.config();
@@ -24,13 +24,13 @@ db.once("open", function () {
   console.log(" Mongoose Connected successfully");
 });
 
-// app.use(
-//   "/api",
-//   createProxyMiddleware({
-//     target: "http://localhost:8000",
-//     changeOrigin: true,
-//   })
-// );
+app.use(
+  "/api",
+  createProxyMiddleware({
+    target: "mern-ticketbooking-api.vercel.app",
+    changeOrigin: true,
+  })
+);
 
 app.use(cookieParser());
 app.use(cors());
