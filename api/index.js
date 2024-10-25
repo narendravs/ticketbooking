@@ -13,7 +13,7 @@ const app = express();
 dotenv.config();
 
 //mongoose connection
-mongoose.connect("mongodb+srv://narenn185:narenn185@cluster0.ka7ooix.mongodb.net/ticketbooking?retryWrites=true&w=majority", {
+mongoose.connect(process.env.URL, {
   useNewUrlParser: true,
 });
 
@@ -32,16 +32,9 @@ db.once("open", function () {
 //   })
 // );
 
-app.use(cors(
-    {
-        origin: ["https://mern-ticketbooking-admin.vercel.app"],
-        methods: ["POST", "GET"],
-        credentials: true
-    }
-));
 
 app.use(cookieParser());
-//app.use(cors());
+app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoute);
