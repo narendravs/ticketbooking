@@ -1,16 +1,16 @@
 import React from "react";
-import Navbar from "../../components/navbar/Navbar";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Widget from "../../components/widget/Widget";
-import Featured from "../../components/featured/Featured";
-import Chart from "../../components/chart/Chart";
-import Table from "../../components/table/Table";
+// import Navbar from "../../components/navbar/Navbar";
+// import Sidebar from "../../components/sidebar/Sidebar";
+// import Widget from "../../components/widget/Widget";
+// import Featured from "../../components/featured/Featured";
+// import Chart from "../../components/chart/Chart";
+// import Table from "../../components/table/Table";
 import "./home.css";
 
 function Home() {
   return (
     <div className="home">
-      <Sidebar />
+{/*       <Sidebar />
       <div className="homeContainer">
         <Navbar />
         <div className="widgets">
@@ -27,7 +27,8 @@ function Home() {
           <div className="listTitle">Latest Transactions</div>
           <Table />
         </div>
-      </div>
+      </div> */}
+      <p>Hello</p>
     </div>
   );
 }
