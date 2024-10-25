@@ -19,7 +19,7 @@ function Login() {
     e.preventDefault();
     try {
       dispatch({ type: "LOGIN_START" });
-      const res = await axios.post("https://mern-ticketbooking-api.vercel.app/auth/login", credentials);
+      const res = await axios.post("/auth/login", credentials);
 
       if (res.data.isAdmin) {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
