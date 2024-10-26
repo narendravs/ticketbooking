@@ -17,24 +17,24 @@ function Login() {
   };
   const handleClick = async (e) => {
     e.preventDefault();
-    // try {
-    //   dispatch({ type: "LOGIN_START" });
-    //   const res = await axios.post("https://mern-ticketbooking-api.vercel.app/api/auth/login", credentials);
+     try {
+       dispatch({ type: "LOGIN_START" });
+       const res = await axios.post("/user", credentials);
 
-    //   if (res.data.isAdmin) {
-    //     dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
+       if (res.data.isAdmin) {
+         dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
 
-    //     navigate("/");
-    //   } else {
-    //     dispatch({
-    //       type: "LOGIN_FAILURE",
-    //       payload: { message: "You are not allowed!" },
-    //     });
-    //   }
-    // } catch (error) {
-    //   dispatch({ type: "LOGIN_FAILURE", payload: error });
-    // }
-     navigate("/");
+         navigate("/");
+       } else {
+         dispatch({
+           type: "LOGIN_FAILURE",
+           payload: { message: "You are not allowed!" },
+         });
+       }
+     } catch (error) {
+       dispatch({ type: "LOGIN_FAILURE", payload: error });
+     }
+   
   };
 
   return (
