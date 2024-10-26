@@ -1,5 +1,5 @@
 {
-  "buildCommand": "npm start",
+  
   "cleanUrls": true,
    "framework": "create-react-app"
 }
