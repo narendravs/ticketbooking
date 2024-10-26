@@ -1,4 +1,6 @@
 {
   "cleanUrls": true,
-  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
+  "redirects": [
+    { "source": "/login", "destination": "/home", "permanent": false }
+  ]
 }
