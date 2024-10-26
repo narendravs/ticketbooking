@@ -1,6 +1,4 @@
 {
   "cleanUrls": true,
-  "redirects": [
-    { "source": "auth/login", "destination": "https://mern-ticketbooking-api.vercel.app/api/auth/login", "statusCode": 301 }
-  ]
+  "rewrites": [{ "source": "/(.*)", "destination": "/api" }]
 }
