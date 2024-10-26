@@ -1,7 +1,5 @@
 {
+  "buildCommand": "npm start",
   "cleanUrls": true,
-  "rewrites":  [
-    {"source": "/login", "destination": "/home"},
-    
-  ]
+   "framework": "create-react-app"
 }
