@@ -42,14 +42,9 @@ app.use("/api/users", usersRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/hotels", hotelRoute);
 
-app.get("/", (req, res) => {
-const db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error: "));
-db.once("open", function () {
-  console.log(" Mongoose Connected successfully");
-});
-    res.json("Mongoose Connected successfully");
-})
+// app.get("/", (req, res) => {
+//     res.json("Mongoose Connected successfully");
+// })
 app.listen(8000, () => {
   console.log("App running on the PORT 8000 Successfully");
 });
