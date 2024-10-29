@@ -4,7 +4,7 @@ import "./featured.css";
 
 function Featured() {
   const { data, loading, error } = useFetch(
-    "/hotels/countByCity/cities/?cities=bangalore,mysore,tirupati"
+    "https://mern-ticketbooking-api.vercel.app/api/hotels/countByCity/cities/?cities=bangalore,mysore,tirupati"
   );
 
   return (
