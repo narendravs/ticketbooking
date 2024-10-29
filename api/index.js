@@ -21,7 +21,7 @@ mongoose.connect("mongodb+srv://narenn185:narenn185@cluster0.ka7ooix.mongodb.net
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
-  console.log(" Mongoose Connected successfully");
+  console.log(" Mongoose Connected successfully new");
 });
 
 // app.use(
