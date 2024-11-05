@@ -1,11 +1,25 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContex";
 import "./navbar.css";
 
 function Navbar() {
   const { user } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
+  const handleLogin = () => {
+    navigate("/login");
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/login");
+  };
+
+  const handleRegister = () => {
+    navigate("/register");
+  };
   return (
     <div className="navbar">
       <div className="navContainer">
@@ -13,11 +27,20 @@ function Navbar() {
           <span className="logo">ticketbooking</span>
         </Link>
         {user ? (
-          user.username
+          <div className="navUser">
+            <p className="navFont">{user.username}</p>
+            <button className="navButton" onClick={handleLogout}>
+              Logout
+            </button>
+          </div>
         ) : (
           <div className="navItems">
-            <button className="navButton">Register</button>
-            <button className="navButton">Login</button>
+            <button className="navButton" onClick={handleRegister}>
+              Register
+            </button>
+            <button className="navButton" onClick={handleLogin}>
+              Login
+            </button>
           </div>
         )}
       </div>

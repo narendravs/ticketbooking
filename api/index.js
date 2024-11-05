@@ -27,7 +27,7 @@ db.once("open", function () {
 // app.use(
 //   "/api",
 //   createProxyMiddleware({
-//     target: "http://localhost:8000",
+//     target: "mern-ticketbooking-api.vercel.app",
 //     changeOrigin: true,
 //   })
 // );

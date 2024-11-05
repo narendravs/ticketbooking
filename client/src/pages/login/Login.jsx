@@ -28,6 +28,10 @@ function Login() {
     }
   };
 
+  const handleRegister = () => {
+    navigate("/register");
+  };
+
   const handleRequest = (e) => {
     setCredentials((prev) => ({
       ...prev,
@@ -54,6 +58,9 @@ function Login() {
         />
         <button disabled={loading} onClick={handleClick} className="lButton">
           Login
+        </button>
+        <button disabled={loading} onClick={handleRegister} className="lButton">
+          Register
         </button>
         {error && <span>{error.message}</span>}
       </div>

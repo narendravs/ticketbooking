@@ -22,7 +22,7 @@ function Sidebar() {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">lamadev</span>
+          <span className="logo">narenvs</span>
         </Link>
       </div>
       <div className="center">
@@ -90,7 +90,7 @@ function Sidebar() {
         </ul>
       </div>
       <div className="bottom">
-        <span style={{ fontWeight: "500", margin: "30px" }}>Select Color</span>
+        <span style={{ fontWeight: "500", margin: "0px" }}>Select Color</span>
         <div
           className="colorOption"
           onClick={() => dispatch({ type: "LIGHT" })}

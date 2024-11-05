@@ -65,8 +65,10 @@
 
   .bottom {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin: 10px;
+    position: absolute;
 
     .colorOption {
       width: 20px;
