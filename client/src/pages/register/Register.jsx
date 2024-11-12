@@ -95,7 +95,7 @@ function Register() {
               ref={passwordAgain}
               required
             />
-            <button className="loginButton1">Sign Up</button>
+            <button className="loginButton1" onClick={handleClick}>Sign Up</button>
             <button className="loginButton2" onClick={handleLogin}>
               Log into Account
             </button>
