@@ -16,7 +16,7 @@ function Login() {
 
   const handleClick = async (e) => {
     e.preventDefault();
-
+    alert(credentials);
     dispatch({ type: "LOGIN_START" });
 
     try {
