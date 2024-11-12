@@ -11,6 +11,7 @@ function Login() {
   });
 
   const navigate = useNavigate();
+
   const { loading, error, dispatch } = useContext(AuthContext);
 
   const handleClick = async (e) => {
@@ -19,7 +20,10 @@ function Login() {
     dispatch({ type: "LOGIN_START" });
 
     try {
-      const res = await axios.post("https://mern-ticketbooking-api.vercel.app/api/auth/login", credentials);
+      const res = await axios.post(
+        "https://mern-ticketbooking-api.vercel.app/api/auth/login",
+        credentials
+      );
       console.log(res.data);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       navigate("/");
@@ -33,6 +37,10 @@ function Login() {
       ...prev,
       [e.target.id]: e.target.value,
     }));
+  };
+
+  const handleRegister = () => {
+    navigate("/register");
   };
 
   return (
@@ -59,7 +67,7 @@ function Login() {
           Register
         </button>
         {error && <span>{error.message}</span>}
-       </div>
+      </div>
     </div>
   );
 }
