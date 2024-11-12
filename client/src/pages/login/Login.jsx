@@ -25,10 +25,10 @@ function Login() {
         credentials
       );
      // console.log(res.data);
-      dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+     // dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       navigate("/");
     } catch (error) {
-      dispatch({ type: "LOGIN_FAILURE", payload: error.res.data });
+     // dispatch({ type: "LOGIN_FAILURE", payload: error.res.data });
     }
   };
 
