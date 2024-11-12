@@ -24,7 +24,7 @@ function Login() {
         "https://mern-ticketbooking-api.vercel.app/api/auth/login",
         credentials
       );
-      console.log(res.data);
+     // console.log(res.data);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
       navigate("/");
     } catch (error) {
