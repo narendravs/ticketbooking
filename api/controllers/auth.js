@@ -19,7 +19,7 @@ export const login = async (req, res, next) => {
   try {
 
      console.log(req.body.username);
-    const user = await User.findOne({ username: req.body.username });
+  //  const user = await User.findOne({ username: req.body.username });
    res.status(200).json("hello");
    
   } catch (error) {
