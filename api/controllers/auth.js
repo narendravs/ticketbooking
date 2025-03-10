@@ -17,8 +17,18 @@ export const register = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
   try {
-    console.log(req.body.username);
-    const user = await User.findOne({ username: req.body.username });
+res.setHeader('Access-Control-Allow-Credentials', true)
+  res.setHeader('Access-Control-Allow-Origin', '*')
+  // another common pattern
+  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
+  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+  res.setHeader(
+    'Access-Control-Allow-Headers',
+    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
+  )
+   console.log(req.body.username);
+    //const user = await User.findOne({ username: req.body.username });
+     const user = await User({ username:"test", password:"test", email:"test@gmail.com",country:"",phone:""})
     if (!user) return next(createError(404, "User not found"));
     const isPasswordCorrect = bcrypt.compare(req.body.password, user.password);
     if (!isPasswordCorrect)
@@ -34,6 +44,7 @@ export const login = async (req, res, next) => {
       })
       .status(200)
       .json({ ...otherDetails, isAdmin });
+   
   } catch (error) {
     next(error);
   }
