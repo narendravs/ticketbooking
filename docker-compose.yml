@@ -1,0 +1,37 @@
+version: "3.8"
+
+services:
+  # mongodb:
+  #   image: mongodb/mongodb-atlas-local
+  #   environment:
+  #     - MONGODB_INITDB_ROOT_USERNAME=narenn185
+  #     - MONGODB_INITDB_ROOT_PASSWORD=narenn@185
+  #   ports:
+  #     - 27018:27017
+
+  api:
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile.api
+    container_name: api_c
+    ports:
+      - "8000:8000"
+    env_file:
+      - path: \api\.env
+        required: true # default
+
+  admin:
+    build:
+      context: ./admin
+      dockerfile: ./Dockerfile.admin
+    container_name: admin_c
+    ports:
+      - "7000:3000"
+
+  client:
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile.client
+    container_name: client_c
+    ports:
+      - "6000:3000"

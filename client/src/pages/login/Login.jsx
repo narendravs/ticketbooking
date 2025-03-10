@@ -41,29 +41,35 @@ function Login() {
 
   return (
     <div className="login">
-      <div className="lContainer">
-        <input
-          type="text"
-          placeholder="user name"
-          id="username"
-          onChange={handleRequest}
-          className="lInput"
-        />
-        <input
-          type="password"
-          placeholder="password"
-          id="password"
-          className="lInput"
-          onChange={handleRequest}
-        />
-        <button disabled={loading} onClick={handleClick} className="lButton">
-          Login
-        </button>
-        <button disabled={loading} onClick={handleRegister} className="lButton">
-          Register
-        </button>
-        {error && <span>{error.message}</span>}
-      </div>
+      <form onSubmit={handleClick}>
+        <div className="lContainer">
+          <input
+            type="text"
+            placeholder="user name"
+            id="username"
+            onChange={handleRequest}
+            className="lInput"
+          />
+          <input
+            type="password"
+            placeholder="password"
+            id="password"
+            className="lInput"
+            onChange={handleRequest}
+          />
+          <button disabled={loading} onClick={handleClick} className="lButton">
+            Login
+          </button>
+          <button
+            disabled={loading}
+            onClick={handleRegister}
+            className="lButton"
+          >
+            Register
+          </button>
+          {error && <span>{error.message}</span>}
+        </div>
+      </form>
     </div>
   );
 }
