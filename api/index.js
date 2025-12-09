@@ -13,10 +13,13 @@ const app = express();
 dotenv.config();
 
 //mongoose connection
-mongoose.connect("mongodb+srv://narenn185:narenn185@cluster0.ka7ooix.mongodb.net/ticketbooking?retryWrites=true&w=majority", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  "mongodb+srv://narenn185:narenn185@cluster0.ka7ooix.mongodb.net/ticketbooking?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 //test the connection
 const db = mongoose.connection;
@@ -32,7 +35,6 @@ db.once("open", function () {
 //     changeOrigin: true,
 //   })
 // );
-
 
 app.use(cookieParser());
 app.use(cors());
