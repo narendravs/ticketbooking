@@ -1,0 +1,20 @@
+.register-page {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f4f7; /* Slightly changed color */
+}
+
+.register-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 350px; /* Increased width */
+  padding: 30px; /* Added padding */
+  background-color: #ffffff; /* Changed to white */
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px; /* Increased border radius */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
+}
