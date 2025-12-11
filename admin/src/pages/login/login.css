@@ -22,7 +22,7 @@
   outline: none;
   border: none;
 }
-.button {
+/* .button {
   width: 100px;
   height: 30px;
   display: flex;
@@ -30,9 +30,149 @@
   justify-content: center;
   border-radius: 5px;
   cursor: pointer;
-
   border: none;
 }
 .button:focus {
   background-color: green;
+} */
+.title {
+  color: black;
+  font-size: 18px;
+}
+.error {
+  color: red;
+  font-size: 12px;
+}
+button {
+  cursor: pointer;
+}
+
+.login-container-wrapper {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  user-select: none;
+  overflow-y: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: hsl(218, 50%, 91%);
+  height: 100vh;
+  margin: 0;
+}
+
+/* @mixin screen equivalent - used for .screen-1 */
+.screen-1 {
+  /* @include screen */
+  background: hsl(213, 85%, 97%); /* $p */
+  padding: 2em;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  box-shadow: 0 0 2em hsl(231, 62%, 94%);
+  /* .screen-1 specific */
+  gap: 2em;
+}
+
+.screen-1-content {
+  margin-top: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+.screen-1 .logo {
+  margin-top: -3em;
+}
+
+/* Common styles for .email and .password */
+.screen-1 .email,
+.screen-1 .password {
+  background: hsl(0, 0%, 100%);
+  box-shadow: 0 0 2em hsl(231, 62%, 94%);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  border-radius: 20px;
+  color: hsl(0, 0%, 30%);
+}
+
+.screen-1 .email {
+  margin-top: -3em;
+}
+
+.screen-1 .email input,
+.screen-1 .password input {
+  outline: none;
+  border: none;
+  height: 30px;
+  font-size: 1em;
+
+  border-radius: 5px;
+  padding: 2px;
+  padding-left: 5px;
+}
+
+.screen-1 .email input::placeholder,
+.screen-1 .password input::placeholder {
+  color: hsl(0, 0%, 0%);
+  font-size: 0.9em;
+}
+
+.screen-1 .email ion-icon,
+.screen-1 .password ion-icon {
+  color: hsl(0, 0%, 30%);
+  margin-bottom: -0.2em;
+}
+
+/* Inner structure for input/icon alignment (sec-2 from HTML) */
+.screen-1 .email .sec-2,
+.screen-1 .password .sec-2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.screen-1 .email .sec-2 input,
+.screen-1 .password .sec-2 input {
+  flex-grow: 1; /* Make input take available space */
+}
+
+.screen-1 .password .show-hide {
+  /* margin-right: -5em; */
+}
+
+.login-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.screen-1 .login {
+  padding: 1em;
+  background: hsl(233, 36%, 38%); /* $s */
+  color: hsl(0, 0%, 100%); /* Adjusted from hsl(0 0 100) to standard format */
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  width: max-content;
+  height: 30px;
+}
+
+.screen-1 .login:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+.screen-1 .footer {
+  display: flex;
+  font-size: 0.7em;
+  color: hsl(0, 0%, 37%);
+  gap: 14em; /* Large gap for spacing */
+  padding-bottom: 10em;
+}
+
+.screen-1 .footer span {
+  cursor: pointer;
 }
