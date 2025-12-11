@@ -1,7 +1,18 @@
 import { createContext, useEffect, useReducer } from "react";
 
+const getInitialUser = () => {
+  try {
+    const storedUser = localStorage.getItem("user");
+    // Avoids parsing "null" or "undefined" strings and handles empty storage
+    if (!storedUser || storedUser === "undefined") return null;
+    return JSON.parse(storedUser);
+  } catch (error) {
+    return null;
+  }
+};
+
 const INITIAL_CONTEXT = {
-  user: JSON.parse(localStorage.getItem("user")) || null,
+  user: getInitialUser(),
   loading: false,
   error: null,
 };
