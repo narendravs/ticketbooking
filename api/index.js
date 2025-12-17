@@ -28,16 +28,14 @@ db.once("open", function () {
   console.log(" Mongoose Connected successfully new");
 });
 
-// app.use(
-//   "/api",
-//   createProxyMiddleware({
-//     target: "https://mern-ticketbooking-api.vercel.app",
-//     changeOrigin: true,
-//   })
-// );
+app.use(cors({
+  origin: "https://mern-ticketbooking-client.vercel.app", // Your frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
 
 app.use(cookieParser());
-app.use(cors());
+//app.use(cors());
 app.use(express.json());
 
 app.use("/api/auth", authRoute);
