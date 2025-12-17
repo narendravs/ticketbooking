@@ -9,7 +9,7 @@ const useFetch = (url) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const BASE_URL = "https://ticketbooking-5eoj.onrender.com/api/";
+        const BASE_URL = "https://ticketbooking-5eoj.onrender.com/api";
         const fullUrl = `${BASE_URL}${url}`;
         const res = await axios.get(fullUrl);
         console.log(res.data);
