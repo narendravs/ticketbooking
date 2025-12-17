@@ -14,10 +14,10 @@ dotenv.config();
 
 //mongoose connection
 mongoose.connect(
-  "mongodb+srv://narenn185:narenn185@cluster0.ka7ooix.mongodb.net/ticketbooking?retryWrites=true&w=majority",
+  process.env.URL,
   {
     useNewUrlParser: true,
-    useUnifiedTopology: true,
+    
   }
 );
 
