@@ -11,6 +11,7 @@ const useFetch = (url) => {
       try {
         const BASE_URL = "https://ticketbooking-5eoj.onrender.com/api";
         const fullUrl = `${BASE_URL}${url}`;
+        console.log(fullUrl);
         const res = await axios.get(fullUrl);
         console.log(res.data);
         setData(res.data);
