@@ -48,7 +48,7 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "proxy": "https://mern-ticketbooking-api.vercel.app/api/",
+  "proxy": " https://render.com/docs/web-services#port-binding/api/",
   "devDependencies": {
     "gh-pages": "^6.1.1"
   }
