@@ -18,6 +18,8 @@ function Login() {
   const { dispatch, loading, error } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  const { loading, error, dispatch } = useContext(AuthContext);
+
   const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
   const [forgotEmail, setForgotEmail] = useState("");
   const [logerror, setError] = useState(null);
@@ -95,6 +97,10 @@ function Login() {
     setIsForgotModalOpen(false);
     setForgotEmail("");
     setError(null);
+  };
+
+  const handleRegister = () => {
+    navigate("/register");
   };
 
   return (

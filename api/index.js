@@ -13,10 +13,11 @@ const app = express();
 dotenv.config();
 
 //mongoose connection
-mongoose.connect(process.env.URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  process.env.URL,
+  {
+    useNewUrlParser: true,
+  });
 
 //test the connection
 const db = mongoose.connection;
@@ -25,8 +26,14 @@ db.once("open", function () {
   console.log(" Mongoose Connected successfully new");
 });
 
+app.use(cors({
+  origin: "https://mern-ticketbooking-client.vercel.app", // Your frontend URL
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  credentials: true
+}));
+
 app.use(cookieParser());
-app.use(cors());
+
 app.use(express.json());
 
 app.use("/api/auth", authRoute);
@@ -34,9 +41,6 @@ app.use("/api/users", usersRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/hotels", hotelRoute);
 
-// app.get("/", (req, res) => {
-//     res.json("Mongoose Connected successfully");
-// })
 app.listen(8000, () => {
   console.log("App running on the PORT 8000 Successfully");
 });
