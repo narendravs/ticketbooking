@@ -6,10 +6,11 @@ import "./list.css";
 
 function List() {
   return (
-    <div>
+    <div className="mainContainer">
       <Navbar />
       <div className="list">
         <Sidebar />
+
         <div className="listContainer">
           <Datatable />
         </div>
