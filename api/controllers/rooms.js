@@ -1,7 +1,5 @@
 import room from "../models/Room.js";
 import hotel from "../models/Hotel.js";
-import Room from "../models/Room.js";
-import Hotel from "../models/Hotel.js";
 
 export const createRoom = async (req, res, next) => {
   const hotelid = req.params.hotelid;
@@ -24,7 +22,7 @@ export const updateRoom = async (req, res, next) => {
   const roomId = req.params.id;
   console.log(roomId);
   try {
-    const updateRoom = await Room.findByIdAndUpdate(
+    const updateRoom = await room.findByIdAndUpdate(
       roomId,
       { $set: req.body },
       { new: true }
@@ -37,9 +35,9 @@ export const updateRoom = async (req, res, next) => {
 export const deleteRoom = async (req, res, next) => {
   const hotelId = req.params.hotelId;
   try {
-    await Room.findByIdAndDelete(req.params.id);
+    await room.findByIdAndDelete(req.params.id);
     try {
-      await Hotel.findByIdAndUpdate(hotelId, {
+      await hotel.findByIdAndUpdate(hotelId, {
         $pull: { rooms: req.params.id }, //need to check pull
       });
     } catch (error) {
@@ -51,26 +49,27 @@ export const deleteRoom = async (req, res, next) => {
   }
 };
 export const getRoom = async (req, res, next) => {
-  const roomId = req.params.id;
+  const hotelId = req.params.id;
   try {
-    const room = await Room.findById(roomId);
-    res.status(200).json(room);
+    const hotelInfo = await hotel.findById(hotelId);
+    const roomList = await room.find({ _id: { $in: hotelInfo.rooms } });
+    res.status(200).json(roomList);
   } catch (error) {
     next(error);
   }
 };
 export const getRooms = async (req, res, next) => {
   try {
-    const rooms = await Room.find();
+    const roomsInfo = await room.find();
 
-    res.status(200).json(rooms);
+    res.status(200).json(roomsInfo);
   } catch (error) {
     next(error);
   }
 };
 export const updateRoomAvailability = async (req, res, next) => {
   try {
-    await Room.updateOne(
+    await room.updateOne(
       { "roomNumbers._id": req.params.id },
       { $push: { "roomNumbers.$.unavailableDates": req.body.dates } } //need to check the update
     );
