@@ -157,11 +157,12 @@ function Datatable() {
   return (
     <div className="datatable">
       <div className="datatableTitle">
-        {path}
-        <Link to={`/${path}/new`} className="link">
-          Add new
-        </Link>
-
+        <div className="title">
+          {path}
+          <Link to={`/${path}/new`} className="link">
+            Add new
+          </Link>
+        </div>
         <DataGrid
           className="datagrid"
           rows={rows}
