@@ -1,15 +1,25 @@
 .datatable {
-  height: 600px;
+  display: flex;
   padding: 20px;
 
   .datatableTitle {
+    display: flex;
+    flex-direction: column;
     width: 100%;
     font-size: 24px;
     color: grey;
     margin-bottom: 10px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    /* align-items: center;
+    justify-content: space-between; */
+    position: relative;
+    gap: 20px;
+  }
+  .title {
+    top: 0;
+    left: 0;
+    margin-bottom: 10px;
+    /* position: absolute; */
   }
   .link {
     margin: 10px;

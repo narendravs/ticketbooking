@@ -17,22 +17,14 @@ export const register = async (req, res, next) => {
 
 export const login = async (req, res, next) => {
   try {
-res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', '*')
-  // another common pattern
-  // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  )
-   console.log(req.body.username);
-    //const user = await User.findOne({ username: req.body.username });
-     const user = await User({ username:"test", password:"test", email:"test@gmail.com",country:"",phone:""})
+    const user = await User.findOne({ email: req.body.email });
     if (!user) return next(createError(404, "User not found"));
-    const isPasswordCorrect = bcrypt.compare(req.body.password, user.password);
+    const isPasswordCorrect = await bcrypt.compare(
+      req.body.password,
+      user.password
+    );
     if (!isPasswordCorrect)
-      return next(createError(400, "Wrong password or username"));
+      return next(createError(400, "Wrong password or email"));
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
       process.env.JWT
@@ -44,7 +36,6 @@ res.setHeader('Access-Control-Allow-Credentials', true)
       })
       .status(200)
       .json({ ...otherDetails, isAdmin });
-   
   } catch (error) {
     next(error);
   }

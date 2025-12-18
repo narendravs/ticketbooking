@@ -1,8 +1,11 @@
 .sidebar {
   flex: 1;
-  border-right: 0.5px solid rgb(230, 227, 227);
-  min-height: 100vh;
+  /* border-right: 0.5px solid rgb(230, 227, 227); */
+  min-height: max-content;
   background-color: greenyellow;
+  padding: 5px 10px 10px 10px;
+  margin: 10px;
+  margin-bottom: 20px;
 
   .top {
     height: 50px;
@@ -65,8 +68,10 @@
 
   .bottom {
     display: flex;
+    flex-direction: column;
     align-items: center;
     margin: 10px;
+    position: absolute;
 
     .colorOption {
       width: 20px;

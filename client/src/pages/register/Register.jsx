@@ -1,105 +1,145 @@
-import React, { useRef } from "react";
-import "./register.css";
-import axios from "axios";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-function Register() {
-  const username = useRef();
-  const email = useRef();
-  const password = useRef();
-  const passwordAgain = useRef();
-  const country = useRef();
-  const phone = useRef();
-  const city = useRef();
+import axios from "axios";
+import "./register.css";
 
+function Register() {
+  const [credentials, setCredentials] = useState({
+    username: "",
+    email: "",
+    password: "",
+    country: "",
+    city: "",
+    phone: "",
+    isAdmin: false,
+  });
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
+
+  const handleChange = (e) => {
+    const value =
+      e.target.type === "checkbox" ? e.target.checked : e.target.value;
+    setCredentials((prev) => ({ ...prev, [e.target.id]: value }));
+    // Clear messages when user starts typing
+    setError(null);
+    setSuccess(null);
+  };
+
   const handleClick = async (e) => {
     e.preventDefault();
-    if (passwordAgain.current.value !== password.current.value) {
-      passwordAgain.current.setCustomValidity("Passwords dont match!");
-    } else {
-      const user = {
-        username: username.current.value,
-        email: email.current.value,
-        country: country.current.value,
-        city: city.current.value,
-        phone: phone.current.value,
-        password: password.current.value,
-      };
-      try {
-        await axios.post("https://mern-ticketbooking-api.vercel.app/api/auth/register", user);
+    setLoading(true);
+    setError(null);
+    setSuccess(null);
 
-        navigate("/login");
-      } catch (error) {
-        console.log(error);
-      }
+    if (!credentials.username || !credentials.email || !credentials.password) {
+      setError({ message: "Username, email, and password are required." });
+      setLoading(false);
+      return;
+    }
+
+    if (!credentials.isAdmin) {
+      setError({
+        message: "If you want to login, please select 'Is Admin' checkbox.",
+      });
+      setLoading(false);
+      return;
+    }
+
+    try {
+      await axios.post("/auth/register", credentials);
+      setSuccess({ message: "Registration successful! Please log in." });
+      setLoading(false);
+    } catch (err) {
+      setError(err.response?.data || { message: "Something went wrong!" });
+      setLoading(false);
     }
   };
 
-  const handleLogin = () => {
-    navigate("/login");
-  };
   return (
-    <div className="register">
-      <div className="registerWrapper">
-        {/* <div className="registerLeft">
-          <h3 className="regiserLogo">Narensocial</h3>
-          <span className="regiserDesc">
-            Connect with friends and the world around you on Narensocial.
+    <div className="register-page">
+      <div className="register-container">
+        <h1 className="register-title">Create a New User</h1>
+        <input
+          type="text"
+          placeholder="Username"
+          id="username"
+          onChange={handleChange}
+          className="register-input"
+          required
+        />
+        <input
+          type="email"
+          placeholder="Email"
+          id="email"
+          onChange={handleChange}
+          className="register-input"
+          required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          id="password"
+          onChange={handleChange}
+          className="register-input"
+          required
+        />
+        <input
+          type="text"
+          placeholder="Country"
+          id="country"
+          onChange={handleChange}
+          className="register-input"
+        />
+        <input
+          type="text"
+          placeholder="City"
+          id="city"
+          onChange={handleChange}
+          className="register-input"
+        />
+        <input
+          type="text"
+          placeholder="Phone"
+          id="phone"
+          onChange={handleChange}
+          className="register-input"
+        />
+        <div className="register-admin-option">
+          <label htmlFor="isAdmin">Is Admin?</label>
+          <input
+            type="checkbox"
+            id="isAdmin"
+            onChange={handleChange}
+            checked={credentials.isAdmin}
+          />
+        </div>
+        <button
+          disabled={loading}
+          onClick={handleClick}
+          className="register-button"
+        >
+          {loading ? "Registering..." : "Register"}
+        </button>
+        {error && (
+          <span className="register-error-message">{error.message}</span>
+        )}
+
+        {success && (
+          <span className="register-success-message">{success.message}</span>
+        )}
+
+        <div className="register-navigation">
+          <span className="register-nav-text">Already have an account?</span>
+          &nbsp;
+          <span
+            className="register-nav-link"
+            onClick={() => navigate("/login")}
+          >
+            Sign In
           </span>
-        </div> */}
-        <div className="registerRight">
-          <form className="registerBox" onSubmit={handleClick}>
-            <input
-              type="text"
-              placeholder="Username"
-              className="registerInput"
-              ref={username}
-              required
-            />
-            <input
-              type="email"
-              placeholder="email"
-              className="registerInput"
-              ref={email}
-              required
-            />
-            <input
-              type="text"
-              placeholder="country"
-              className="registerInput"
-              ref={country}
-            />
-            <input
-              type="text"
-              placeholder="city"
-              className="registerInput"
-              ref={city}
-            />
-            <input
-              type="text"
-              placeholder="phone"
-              className="registerInput"
-              ref={phone}
-            />
-            <input
-              type="password"
-              placeholder="password"
-              className="registerInput"
-              ref={password}
-              required
-            />
-            <input
-              type="password"
-              placeholder="password again"
-              className="registerInput"
-              ref={passwordAgain}
-              required
-            />
-            <button className="loginButton1" onClick={handleClick}>Sign Up</button>
-            <button className="loginButton2" onClick={handleLogin}>
-              Log into Account
-            </button>
-          </form>
         </div>
       </div>
     </div>

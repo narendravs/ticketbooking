@@ -9,16 +9,8 @@ import { useNavigate } from "react-router-dom";
 
 function Reserve({ setOpen, hotelId }) {
   const [selectedRooms, setSelectedRooms] = useState([]);
-  const { data, loading, error } = useFetch(`/hotels/rooms/${hotelId}`);
+  const { data } = useFetch(`/rooms/${hotelId}`);
   const { dates } = useContext(SearchContext);
-
-  // const [dates, setDates] = useState([
-  //   {
-  //     startDate: new Date(),
-  //     endDate: new Date(),
-  //     key: "selection",
-  //   },
-  // ]);
 
   const getDatesInRange = (startDate, endDate) => {
     const start = new Date(startDate);
@@ -33,7 +25,12 @@ function Reserve({ setOpen, hotelId }) {
     }
     return dates;
   };
-  const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
+  //const alldates = getDatesInRange(dates[0].startDate, dates[0].endDate);
+
+  const startDateSafe = dates?.[0]?.startDate ?? new Date();
+  const endDateSafe = dates?.[0]?.endDate ?? new Date();
+
+  const alldates = getDatesInRange(startDateSafe, endDateSafe);
 
   const isAvailable = (roomNumber) => {
     const isFound = roomNumber.unavailableDates.some((date) =>
@@ -64,8 +61,11 @@ function Reserve({ setOpen, hotelId }) {
           return res.data;
         })
       );
+      alert("Reservation successful!");
       navigate("/");
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -77,31 +77,37 @@ function Reserve({ setOpen, hotelId }) {
           onClick={() => setOpen(false)}
         />
         <span>Select your rooms:</span>
-        {data.map((item) => (
-          <div className="rItem" key={item._id}>
-            <div className="rItemInfo">
-              <div className="rTitle">{item.title}</div>
-              <div className="rDesc">{item.desc}</div>
-              <div className="rMax">
-                Max people: <b>{item.maxPeople}</b>
-              </div>
-              <div className="rPrice">{item.price}</div>
-            </div>
-            <div className="rSelectRooms">
-              {item.roomNumbers.map((roomNumber) => (
-                <div className="room">
-                  <label>{roomNumber.number}</label>
-                  <input
-                    type="checkbox"
-                    value={roomNumber._id}
-                    onChange={handleSelect}
-                    disabled={!isAvailable(roomNumber)}
-                  />
+        {data && data.length > 0 ? (
+          // If data is available, map over it to display rooms
+          data.map((item) => (
+            <div className="rItem" key={item._id}>
+              <div className="rItemInfo">
+                <div className="rTitle">{item.title}</div>
+                <div className="rDesc">{item.desc}</div>
+                <div className="rMax">
+                  Max people: <b>{item.maxPeople}</b>
                 </div>
-              ))}
+                <div className="rPrice">{item.price}</div>
+              </div>
+              <div className="rSelectRooms">
+                {item.roomNumbers.map((roomNumber) => (
+                  <div className="room" key={roomNumber._id}>
+                    <label>{roomNumber.number}</label>
+                    <input
+                      type="checkbox"
+                      value={roomNumber._id}
+                      onChange={handleSelect}
+                      disabled={!isAvailable(roomNumber)}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-        ))}
+          ))
+        ) : (
+          // If data is empty or still loading, display a fallback message
+          <p>No rooms found for this hotel or rooms list is still loading...</p>
+        )}
         <button onClick={handleClick} className="rButton">
           Reserve Now!
         </button>

@@ -1,36 +1,333 @@
-.login {
-  height: 100vh;
+.login-container-wrapper {
+  font-family: "Poppins", sans-serif;
+  box-sizing: border-box;
+  user-select: none;
+  overflow-y: hidden;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  height: 100vh;
+  padding: 20px;
 }
-.lContainer {
-  width: 400px;
-  height: 300px;
-  border-radius: 10px;
-  background-color: aqua;
+
+.login-error-message {
+  color: #dc3545;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+/* @mixin screen equivalent - used for .screen-1 */
+.screen-1 {
+  background: hsl(0, 0%, 100%);
+  padding: 3em;
+  border-radius: 20px;
+  box-shadow: 2px 4px 10px 1px rgba(0, 53, 128, 0.47);
+  gap: 2.5em;
+  max-width: 400px;
+  width: 90%;
+}
+
+.screen-1-content {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 2em;
+  width: 100%;
+}
+
+/* Logo/Title styling */
+/* .screen-1 .logo {
+  text-align: center;
+  margin-bottom: 1em;
+}
+
+.screen-1 .logo h1 {
+  color: #adff2f;
+  font-size: 2.5em;
+  font-weight: 700;
+  margin: 0;
+  text-shadow: 2px 2px 4px rgba(173, 255, 47, 0.3);
+} */
+
+/* Common styles for .email and .password */
+.screen-1 .email,
+.screen-1 .password {
+  background: hsl(0, 0%, 100%);
+  box-shadow: 2px 2px 8px rgba(173, 255, 47, 0.15);
+  padding: 1.5em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  border-radius: 15px;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.screen-1 .email:focus-within,
+.screen-1 .password:focus-within {
+  border-color: #003580;
+  box-shadow: 2px 4px 10px rgba(185, 185, 221, 0.25);
+}
+
+.screen-1 .email label,
+.screen-1 .password label {
+  color: gray;
+  font-weight: 600;
+  font-size: 0.9em;
+  margin-bottom: 0.5em;
+}
+
+.screen-1 .email input,
+.screen-1 .password input {
+  outline: none;
+  border: none;
+  color: gray;
+  height: 40px;
+  font-size: 1em;
+  border-radius: 8px;
+  padding: 0 10px;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+}
+
+.screen-1 .email input:focus,
+.screen-1 .password input:focus {
+  background: #ffffff;
+  box-shadow: inset 0 0 0 2px rgba(61, 72, 223, 0.2);
+}
+
+.screen-1 .email input::placeholder,
+.screen-1 .password input::placeholder {
+  color: #6c757d;
+  font-size: 0.95em;
+}
+
+.screen-1 .email ion-icon,
+.screen-1 .password ion-icon {
+  color: #003580;
+  margin-bottom: -0.2em;
+  font-size: 1.2em;
+}
+
+/* Inner structure for input/icon alignment */
+.screen-1 .email .sec-2,
+.screen-1 .password .sec-2 {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.8em;
+}
+
+.screen-1 .email .sec-2 input,
+.screen-1 .password .sec-2 input {
+  flex-grow: 1;
+}
+
+.screen-1 .password .show-hide {
+  cursor: pointer;
+  color: #6c757d;
+  transition: color 0.3s ease;
+}
+
+.screen-1 .password .show-hide:hover {
+  color: #003580;
+}
+
+.login-button-container {
+  display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  gap: 1.5em;
+  margin-top: 1em;
 }
-.lInput {
-  height: 15px;
-  width: 300px;
-  padding: 10px;
-}
-.lButton {
+
+.screen-1 .login {
+  padding: 1em 3em;
+  background: linear-gradient(135deg, #2c6eca 0%, #003580 100%);
+  color: hsl(0, 0%, 100%);
   border: none;
-  width: 325px;
-  padding: 10px;
-  background-color: #0071c2;
-  color: white;
-  font-weight: bold;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1.1em;
   cursor: pointer;
-  border-radius: 5px;
+  transition: all 0.3s ease;
+  box-shadow: 2px 4px 10px rgba(61, 72, 223, 0.2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
-.lButton:disabled {
-  background-color: #0071c28c;
+
+.screen-1 .login:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 4px 6px 15px rgba(61, 72, 223, 0.6);
+  background: linear-gradient(135deg, #2c6eca 0%, #003580 100%);
+}
+
+.screen-1 .login:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.screen-1 .login:disabled {
+  background-color: #cccccc;
   cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.error {
+  color: #dc3545;
+  font-size: 0.9em;
+  text-align: center;
+  background: rgba(220, 53, 69, 0.1);
+  padding: 0.5em 1em;
+  border-radius: 8px;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+}
+
+.footer1 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #6c757d;
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top: 1px solid #e9ecef;
+}
+
+.screen-1 .footer1 span {
+  cursor: pointer;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+
+.screen-1 .footer1 span:hover {
+  color: #003580;
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .screen-1 {
+    padding: 2em;
+    margin: 10px;
+  }
+
+  .screen-1 .logo h1 {
+    font-size: 2em;
+  }
+}
+/* --- Custom Forgot Password Modal Styles --- */
+
+/* Full screen overlay to dim the background */
+.forgot-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above everything */
+}
+
+/* Modal box itself */
+.forgot-modal-content {
+  background-color: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.forgot-modal-title {
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.forgot-modal-description {
+  margin-bottom: 20px;
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Input group styling */
+.forgot-input-group {
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid #003580; /* line color */
+  padding: 5px 0;
+  margin-bottom: 10px;
+}
+
+.forgot-icon {
+  font-size: 1.2em;
+  margin-right: 10px;
+  color: #003580; /* Blue icon color */
+}
+
+.forgot-input {
+  border: none;
+  outline: none;
+  flex-grow: 1;
+  padding: 5px 0;
+  font-size: 1em;
+}
+
+/* Action buttons */
+.forgot-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.forgot-cancel-btn,
+.forgot-ok-btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px; /* Enhanced look */
+  cursor: pointer;
+  font-weight: 600; /* Enhanced look */
+  font-size: 14px;
+  transition: all 0.3s ease; /* Smooth transition for hover/active */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* --- CANCEL Button Styling --- */
+.forgot-cancel-btn {
+  background-color: #e9ecef;
+  color: #495057;
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.forgot-cancel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
+  background-color: #dee2e6;
+}
+
+.forgot-cancel-btn:active {
+  transform: translateY(0);
+  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* --- OK Button Styling (Greenyellow) --- */
+.forgot-ok-btn {
+  background: linear-gradient(135deg, #2c6eca 0%, #003580 100%);
+  color: hsl(0, 0%, 100%); /* Changed text color to white for visibility */
+  box-shadow: 2px 4px 10px rgba(61, 72, 223, 0.4);
+}
+
+.forgot-ok-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 6px 15px rgba(61, 72, 223, 0.6);
+  background: linear-gradient(135deg, #2c6eca 0%, #003580 100%);
+}
+
+.forgot-ok-btn:active {
+  transform: translateY(0);
+  box-shadow: 2px 4px 10px rgba(61, 72, 223, 0.4);
 }

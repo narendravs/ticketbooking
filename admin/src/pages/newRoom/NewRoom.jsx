@@ -28,54 +28,56 @@ function NewRoom() {
 
   return (
     <div className="new">
-      <Sidebar />
-      <div className="newContainer">
-        <Navbar />
-        <div className="top">
-          <h1>Add New Room</h1>
-        </div>
-        <div className="bottom">
-          <div className="right">
-            <form>
-              {roomInputs.map((room) => (
-                <div className="formInput" key={room.id}>
-                  <label className="label">{room.label}</label>
-                  <input
-                    type={room.type}
-                    placeholder={room.placeholder}
-                    id={room.id}
-                    onChange={handleChange}
-                    className="input1"
+      <Navbar />
+      <div className="container">
+        <Sidebar />
+        <div className="newContainer">
+          <div className="top">
+            <h1>Add New Room</h1>
+          </div>
+          <div className="bottom">
+            <div className="right">
+              <form>
+                {roomInputs.map((room) => (
+                  <div className="formInput" key={room.id}>
+                    <label className="label">{room.label}</label>
+                    <input
+                      type={room.type}
+                      placeholder={room.placeholder}
+                      id={room.id}
+                      onChange={handleChange}
+                      className="input1"
+                    />
+                  </div>
+                ))}
+                <div className="formInput">
+                  <label className="label">Room</label>
+                  <textarea
+                    onChange={(e) => setRooms(e.target.value)}
+                    placeholder="give comma between room numbers."
                   />
                 </div>
-              ))}
-              <div className="formInput">
-                <label className="label">Room</label>
-                <textarea
-                  onChange={(e) => setRooms(e.target.value)}
-                  placeholder="give comma between room numbers."
-                />
-              </div>
-              <div className="formInput">
-                <label className="label">Choose a hotel</label>
-                <select
-                  id="hotelId"
-                  onChange={(e) => setHotelId(e.target.value)}
-                >
-                  {loading
-                    ? "loading"
-                    : data &&
-                      data.map((hotel) => (
-                        <option key={hotel._id} value={hotel._id}>
-                          {hotel.name}
-                        </option>
-                      ))}
-                </select>
-              </div>
-              <button onClick={handleClick} className="button">
-                Send
-              </button>
-            </form>
+                <div className="formInput">
+                  <label className="label">Choose a hotel</label>
+                  <select
+                    id="hotelId"
+                    onChange={(e) => setHotelId(e.target.value)}
+                  >
+                    {loading
+                      ? "loading"
+                      : data &&
+                        data.map((hotel) => (
+                          <option key={hotel._id} value={hotel._id}>
+                            {hotel.name}
+                          </option>
+                        ))}
+                  </select>
+                </div>
+                <button onClick={handleClick} className="button">
+                  Send
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>

@@ -9,7 +9,7 @@ function MailList() {
         Sign up and we'll send the best deals to you
       </span>
       <div className="mailInputContainer">
-        <input type="text" placeholder="Your Email" />
+        <input type="text" className="mailInput" placeholder="Your Email" />
         <button>Subscribe</button>
       </div>
     </div>

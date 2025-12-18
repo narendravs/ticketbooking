@@ -21,25 +21,14 @@ function Hotel() {
   const location = useLocation();
   const id = location.pathname.split("/")[2];
 
-  const [open, setOpen] = useState(false); //need to set intial false
+  const [open, setOpen] = useState(false);
   const [slideNumber, setSlideNumber] = useState(0);
-  const [openModal, setOpenModal] = useState(false); //need to set initially false
+  const [openModal, setOpenModal] = useState(false);
   const { data, loading } = useFetch(`/hotels/find/${id}`);
   const { user } = useContext(AuthContext);
-  const { dates, options } = useContext(SearchContext); //need to fetch state from the context
+  const { dates, options } = useContext(SearchContext);
   const naviagte = useNavigate();
-  // const [dates, setDates] = useState([
-  //   {
-  //     startDate: new Date(),
-  //     endDate: new Date(),
-  //     key: "selection",
-  //   },
-  // ]);
-  // const [options, setOptions] = useState({
-  //   adult: 1,
-  //   children: 0,
-  //   room: 1,
-  // });
+
   const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24;
   function dayDifference(date1, date2) {
     const timeDiff = Math.abs(date2.getTime() - date1.getTime());
@@ -47,17 +36,23 @@ function Hotel() {
     return diffDays;
   }
 
-  const days = dayDifference(dates[0].endDate, dates[0].startDate);
+  //const days = dayDifference(dates[0].endDate, dates[0].startDate);
+
+  let days;
+
+  if (dates && dates.length > 0 && dates[0].startDate && dates[0].endDate) {
+    days = dayDifference(dates[0].endDate, dates[0].startDate);
+  } else {
+    days = 0;
+  }
 
   const handleMove = (direction) => {
     let newSlideNumber;
-
     if (direction === "l") {
       newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
     } else {
       newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
     }
-
     setSlideNumber(newSlideNumber);
   };
 
@@ -77,7 +72,7 @@ function Hotel() {
   return (
     <div>
       <Navbar />
-      <Header type="list1" />
+      <Header type="list" />
       {loading ? (
         "loadding"
       ) : (
@@ -96,7 +91,7 @@ function Hotel() {
               />
               <div className="sliderWrapper">
                 <img
-                  src={"http://localhost:3000/images/logo192.png"}
+                  src={`/${data.photos[slideNumber]}`}
                   alt=""
                   className="sliderImg"
                 />
@@ -126,11 +121,7 @@ function Hotel() {
               {data.photos?.map((photo, i) => (
                 <div className="hotelImgWrapper" key={i}>
                   <img
-                    src={
-                      i === 0
-                        ? `http://localhost:3000/images/logo192.png`
-                        : `http://localhost:3000/images/logo192.png`
-                    }
+                    src={i === 0 ? `/${photo}` : `images/bliss.png`}
                     onClick={() => handleOpen(i)}
                     alt=""
                     className="hotelImg"
@@ -150,8 +141,13 @@ function Hotel() {
                   excellent location score of 9.8!
                 </span>
                 <h2>
-                  <b>${days * data.cheapestPrice * options.room}</b> ({days}{" "}
-                  nights)
+                  <b>
+                    $
+                    {isNaN(days * data.cheapestPrice * options.room)
+                      ? 0
+                      : days * data.cheapestPrice * options.room}
+                  </b>{" "}
+                  ({days} nights)
                 </h2>
                 <button onClick={handleClick}>Reserve or Book Now!</button>
               </div>

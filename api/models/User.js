@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema(
       type: String,
       require: true,
     },
-    img: { type: String },
+    // img: { type: String },
     city: {
       type: String,
       require: true,
@@ -25,10 +25,6 @@ const UserSchema = new mongoose.Schema(
       require: true,
     },
     password: {
-      type: String,
-      require: true,
-    },
-    city: {
       type: String,
       require: true,
     },
