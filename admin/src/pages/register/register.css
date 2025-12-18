@@ -1,20 +1,299 @@
 .register-page {
-  height: 100vh;
+  /* height: 100vh; */
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #f2f4f7; /* Slightly changed color */
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  padding: 20px;
+  font-family: "Poppins", sans-serif;
+  /* margin: 30px 0; */
 }
 
 .register-container {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  width: 350px; /* Increased width */
-  padding: 30px; /* Added padding */
-  background-color: #ffffff; /* Changed to white */
+  gap: 1em;
+  width: 100%;
+  max-width: 450px;
+  padding: 2em;
+  background-color: hsl(0, 0%, 100%);
   align-items: center;
   justify-content: center;
-  border-radius: 15px; /* Increased border radius */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Added subtle shadow */
+  border-radius: 20px;
+  box-shadow: 2px 4px 10px 1px rgba(173, 255, 47, 0.47);
+  position: relative;
+  margin: 50px 20px;
+}
+
+/* .register-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #adff2f 0%, #7cfc00 50%, #adff2f 100%);
+  border-radius: 20px 20px 0 0;
+} */
+
+.register-title {
+  color: #adff2f;
+  font-size: 2em;
+  font-weight: 700;
+  margin-bottom: 0.5em;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(173, 255, 47, 0.3);
+}
+
+.register-input {
+  width: 100%;
+  height: 45px;
+  border: 2px solid #e9ecef;
+  border-radius: 10px;
+  outline: none;
+  padding: 0 15px;
+  font-size: 1em;
+  transition: all 0.3s ease;
+  background: #f8f9fa;
+  color: #495057;
+}
+
+.register-input:focus {
+  border-color: #adff2f;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(173, 255, 47, 0.1);
+}
+
+.register-input::placeholder {
+  color: #6c757d;
+}
+
+.register-admin-option {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  width: 100%;
+  justify-content: center;
+  margin: 0.5em 0;
+  padding: 1em;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+}
+
+.register-admin-option label {
+  color: #495057;
+  font-weight: 600;
+  font-size: 0.95em;
+}
+
+.register-admin-option input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: #adff2f;
+  cursor: pointer;
+}
+
+.register-button {
+  width: 100%;
+  padding: 1em;
+  background: linear-gradient(135deg, #adff2f 0%, #7cfc00 100%);
+  color: white;
+  border: none;
+  border-radius: 25px;
+  font-size: 1.1em;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 1em;
+  box-shadow: 2px 4px 10px rgba(173, 255, 47, 0.4);
+}
+
+.register-button:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 4px 6px 15px rgba(173, 255, 47, 0.6);
+  background: linear-gradient(135deg, #7cfc00 0%, #adff2f 100%);
+}
+
+.register-button:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.register-button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.register-error-message {
+  color: #dc3545;
+  font-size: 0.9em;
+  text-align: center;
+  background: rgba(220, 53, 69, 0.1);
+  padding: 0.8em 1em;
+  border-radius: 8px;
+  border: 1px solid rgba(220, 53, 69, 0.3);
+  width: 100%;
+  margin-top: 1em;
+}
+
+/* Additional styling for form groups */
+.register-container > input {
+  margin-bottom: 0.5em;
+}
+/* Register navigation styles - Global */
+.register-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2em;
+  margin-top: 1.5em;
+  padding-top: 1em;
+  border-top: 1px solid #e9ecef;
+}
+
+.register-nav-text {
+  color: #6c757d;
+  font-size: 0.9em;
+}
+
+.register-nav-link {
+  color: #007bff;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
+  outline: none;
+  text-decoration: none;
+  user-select: none;
+  display: inline-block;
+}
+
+.register-nav-link:hover {
+  color: #0056b3;
+  text-decoration: underline;
+  background-color: rgba(0, 123, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.register-nav-link:focus {
+  color: #004085;
+  background-color: rgba(0, 123, 255, 0.15);
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+.register-nav-link:active {
+  color: #003d82;
+  background-color: rgba(0, 123, 255, 0.2);
+  transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .register-container {
+    padding: 2em;
+    margin: 10px;
+  }
+
+  .register-title {
+    font-size: 1.7em;
+  }
+
+  .register-input {
+    height: 40px;
+  }
+
+  /* Register navigation styles */
+  .register-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    margin-top: 1.5em;
+    padding-top: 1em;
+    border-top: 1px solid #e9ecef;
+    .register-success-message {
+      color: #28a745;
+      font-size: 0.9em;
+      text-align: center;
+      background: rgba(40, 167, 69, 0.1);
+      padding: 0.8em 1em;
+      border-radius: 8px;
+      border: 1px solid rgba(40, 167, 69, 0.3);
+      width: 100%;
+      margin-top: 1em;
+      line-height: 1.3;
+    }
+  }
+
+  .register-nav-text {
+    color: #6c757d;
+    font-size: 0.9em;
+  }
+
+  .register-nav-link {
+    color: #adff2f;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: color 0.3s ease;
+    cursor: pointer;
+  }
+  .register-nav-link: :hover {
+    color: #ff4444;
+    text-decoration: underline;
+  }
+  /* Register navigation styles - Updated */
+  .register-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2em;
+    margin-top: 1.5em;
+    padding-top: 1em;
+    border-top: 1px solid #e9ecef;
+  }
+
+  .register-nav-text {
+    color: #6c757d;
+    font-size: 0.9em;
+  }
+
+  .register-nav-link {
+    color: #007bff;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    outline: none;
+    text-decoration: none;
+  }
+
+  .register-nav-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+    background-color: rgba(0, 123, 255, 0.1);
+  }
+
+  .register-nav-link:focus {
+    color: #004085;
+    background-color: rgba(0, 123, 255, 0.15);
+    box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+  }
+
+  .register-nav-link:active {
+    color: #003d82;
+    background-color: rgba(0, 123, 255, 0.2);
+  }
+  .register-nav-link:hover {
+    color: #ff4444;
+    text-decoration: underline;
+  }
 }
