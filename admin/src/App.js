@@ -12,12 +12,14 @@ import NewHotel from "./pages/newHotel/NewHotel";
 import { userInputs } from "./formSource.js";
 import NewRoom from "./pages/newRoom/NewRoom";
 import "./styles/dark.css";
+import Register from "./pages/register/Register";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
   const ProtectedRoute = ({ children }) => {
     const { user } = useContext(AuthContext);
-    if (!user) {
+    const logUser = localStorage.getItem("user");
+    if (!user || !logUser) {
       return <Navigate to="/login" />;
     }
     return children;
@@ -29,6 +31,7 @@ function App() {
         <Routes>
           <Route path="/">
             <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
             <Route
               index
               element={
