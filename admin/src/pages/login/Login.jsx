@@ -11,12 +11,17 @@ import {
 
 function Login() {
   const [credentials, setCredentials] = useState({
-    username: undefined,
+    email: undefined,
     password: undefined,
   });
 
   const { dispatch, loading, error } = useContext(AuthContext);
   const navigate = useNavigate();
+
+  const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
+  const [forgotEmail, setForgotEmail] = useState("");
+  const [logerror, setError] = useState(null);
+
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
@@ -28,8 +33,7 @@ function Login() {
 
       console.log(res.data);
       if (res.data.isAdmin) {
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
         navigate("/");
       } else {
         dispatch({
@@ -46,6 +50,53 @@ function Login() {
     navigate("/register");
   };
 
+  const handleForgotEmailChange = (e) => {
+    setForgotEmail(e.target.value);
+    setError(null);
+  };
+
+  const handleForgotPassword = () => {
+    setIsForgotModalOpen(true);
+  };
+
+  const handleResetSubmit = async () => {
+    if (!forgotEmail) {
+      setError({
+        message: "Please enter a valid email.",
+      });
+      return;
+    }
+    // Simple RegEx to check for "text@text.domain" format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(forgotEmail)) {
+      setError({
+        message: "Please enter a valid email format (e.g., user@example.com).",
+      });
+      return;
+    }
+
+    try {
+      // await axios.post('/auth/forgot-password', { email: forgotEmail });
+      alert(
+        `Password reset link has been sent to ${forgotEmail}. Please check your email.`
+      );
+      // Close the modal
+      setIsForgotModalOpen(false);
+    } catch (err) {
+      setError({ message: "Error processing request." });
+    } finally {
+      setForgotEmail("");
+    }
+  };
+
+  // New handler to close the modal without submitting
+  const handleResetCancel = () => {
+    setIsForgotModalOpen(false);
+    setForgotEmail("");
+    setError(null);
+  };
+
   return (
     <div className="login-container-wrapper">
       <div className="screen-1">
@@ -53,7 +104,6 @@ function Login() {
           <div className="email">
             <label htmlFor="email">Email Address</label>
             <div className="sec-2">
-              {/* 3. Replaced IonIcon with IoMailOutline */}
               <IoMailOutline />
               <input
                 type="email"
@@ -68,7 +118,6 @@ function Login() {
           <div className="password">
             <label htmlFor="password">Password</label>
             <div className="sec-2">
-              {/* 3. Replaced IonIcon with IoLockClosedOutline */}
               <IoLockClosedOutline />
               <input
                 className="pas"
@@ -78,7 +127,6 @@ function Login() {
                 placeholder="············"
                 onChange={handleChange}
               />
-              {/* 3. Replaced IonIcon with IoEyeOutline */}
               <IoEyeOutline className="show-hide" />
             </div>
           </div>
@@ -92,10 +140,44 @@ function Login() {
 
           <div className="footer">
             <span onClick={handleRegister}>Sign up</span>
-            <span>Forgot Password?</span>{" "}
-            {/* You can add a handler for this too */}
+            <span onClick={handleForgotPassword}>Forgot Password?</span>
           </div>
         </div>
+        {isForgotModalOpen && (
+          <div className="forgot-modal-overlay">
+            <div className="forgot-modal-content">
+              <h3 className="forgot-modal-title">Reset Your Password</h3>
+              <p className="forgot-modal-description">
+                Enter your email address to receive a password reset link.
+              </p>
+
+              <div className="forgot-input-group">
+                <IoMailOutline className="forgot-icon" />
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={forgotEmail}
+                  onChange={handleForgotEmailChange}
+                  className="forgot-input"
+                />
+              </div>
+              {logerror && (
+                <span className="login-error-message">{logerror.message}</span>
+              )}
+              <div className="forgot-modal-actions">
+                <button
+                  onClick={handleResetCancel}
+                  className="forgot-cancel-btn"
+                >
+                  Cancel
+                </button>
+                <button onClick={handleResetSubmit} className="forgot-ok-btn">
+                  OK
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
