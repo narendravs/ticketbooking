@@ -1,7 +1,12 @@
 .new {
   width: 100%;
   display: flex;
+  flex-direction: column;
+  .conatainer {
+  }
   .newContainer {
+    display: flex;
+    flex-direction: row;
     flex: 6;
   }
   .top,
