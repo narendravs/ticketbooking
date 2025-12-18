@@ -14,7 +14,31 @@
   justify-content: space-between;
   padding: 20px;
 }
+.logout-container {
+  cursor: pointer;
+  padding: 5px 10px;
+  top: 40px;
+  left: 0;
+  position: absolute;
+  border: 1px solid #ccc;
+  background-color: greenyellow;
+  border-radius: 5px;
+  padding: 4px 8px;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s, color 0.3s;
+  opacity: 1;
+  color: grey;
+  letter-spacing: 0.5px;
+}
 
+.logout-container.is-closed {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
 .search {
   display: flex;
   border: 0.5px solid lightgray;
@@ -48,6 +72,7 @@
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  cursor: pointer;
 }
 .counter {
   width: 15px;
