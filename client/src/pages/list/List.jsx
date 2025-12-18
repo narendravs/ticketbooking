@@ -10,7 +10,7 @@ import "./list.css";
 
 function List() {
   const location = useLocation();
-  const [destination, setDestination] = useState(location.state.destination);
+  const [destination] = useState(location.state.destination);
   const [dates, setDates] = useState(location.state.dates);
   // const [dates, setDates] = useState([
   //   {
@@ -21,7 +21,7 @@ function List() {
   // ]);
 
   const [openDate, setOpenDate] = useState(false);
-  const [options, setOptions] = useState(location.state.options);
+  const [options] = useState(location.state.options);
   // const [options, setOptions] = useState({
   //   adult: 1,
   //   children: 0,
@@ -30,7 +30,7 @@ function List() {
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
-  const { data, loading, error, reFetch } = useFetch(
+  const { data, loading, reFetch } = useFetch(
     `/hotels?city=${destination}&min=${min || 0}&max=${max || 999}&limit=5`
   );
   const handleClick = () => {
