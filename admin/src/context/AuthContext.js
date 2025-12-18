@@ -3,6 +3,7 @@ import { createContext, useEffect, useReducer } from "react";
 const getInitialUser = () => {
   try {
     const storedUser = localStorage.getItem("user");
+    console.log("Stored user from localStorage:", storedUser);
     // Avoids parsing "null" or "undefined" strings and handles empty storage
     if (!storedUser || storedUser === "undefined") return null;
     return JSON.parse(storedUser);
@@ -22,21 +23,18 @@ export const AuthContext = createContext(INITIAL_STATE);
 const AuthReducer = (state, action) => {
   switch (action.type) {
     case "LOGIN_START":
-      console.log("I am in Start");
       return {
         user: null,
         loading: true,
         error: null,
       };
     case "LOGIN_SUCCESS":
-      console.log("I am in Success");
       return {
         user: action.payload,
         loading: false,
         error: null,
       };
     case "LOGIN_FAILURE":
-      console.log("I am in Failure");
       return {
         user: null,
         loading: false,
@@ -48,6 +46,7 @@ const AuthReducer = (state, action) => {
         loading: false,
         error: null,
       };
+
     default:
       return state;
   }
@@ -56,7 +55,6 @@ const AuthReducer = (state, action) => {
 export const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
   useEffect(() => {
-    // console.log(state.user);
     localStorage.setItem("user", JSON.stringify(state.user));
   }, [state.user]);
 
