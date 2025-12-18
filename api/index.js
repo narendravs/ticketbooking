@@ -24,14 +24,6 @@ db.once("open", function () {
   console.log(" Mongoose Connected successfully");
 });
 
-// app.use(
-//   "/api",
-//   createProxyMiddleware({
-//     target: "mern-ticketbooking-api.vercel.app",
-//     changeOrigin: true,
-//   })
-// );
-
 app.use(cookieParser());
 app.use(cors());
 app.use(express.json());
