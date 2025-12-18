@@ -49,7 +49,7 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "proxy": " https://render.com/docs/web-services#port-binding/api/",
+  "proxy": "https://render.com/docs/web-services#port-binding/api/",
   "devDependencies": {
     "gh-pages": "^6.1.1"
   }
