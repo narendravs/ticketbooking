@@ -15,7 +15,6 @@ function Login() {
     password: undefined,
   });
 
-  const { dispatch, loading, error } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const { loading, error, dispatch } = useContext(AuthContext);
