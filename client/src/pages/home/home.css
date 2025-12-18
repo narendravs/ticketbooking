@@ -9,3 +9,6 @@
   width: 1024px;
   font-size: 20px;
 }
+.box {
+  box-shadow: 3px 3px 2px 0px rgba(128, 0, 0, 1);
+}

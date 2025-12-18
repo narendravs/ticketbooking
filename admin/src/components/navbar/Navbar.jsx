@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.css";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
@@ -9,9 +9,14 @@ import ChatBubbleOutlineOutlinedIcon from "@mui/icons-material/ChatBubbleOutline
 import ListOutlinedIcon from "@mui/icons-material/ListAltOutlined";
 import { DarkModeContext } from "../../context/darkModeContext.js";
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Navbar() {
   const { dispatch } = useContext(DarkModeContext);
+  const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
+
   return (
     <div className="navbar">
       <div className="wrapper">
@@ -49,7 +54,21 @@ function Navbar() {
               src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
               alt=""
               className="avatar"
+              onClick={() => setOpen(!open)}
             />
+            <div className={`logout-container ${!open ? "is-closed" : ""}`}>
+              {open && (
+                <div
+                  className="logout"
+                  onClick={() => {
+                    localStorage.removeItem("user");
+                    navigate("/login");
+                  }}
+                >
+                  Logout
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </div>

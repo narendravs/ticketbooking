@@ -13,7 +13,7 @@ const app = express();
 dotenv.config();
 
 //mongoose connection
-mongoose.connect("mongodb+srv://narenn185:narenn185@cluster0.ka7ooix.mongodb.net/ticketbooking?retryWrites=true&w=majority", {
+mongoose.connect(process.env.URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -24,15 +24,6 @@ db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
   console.log(" Mongoose Connected successfully new");
 });
-
-// app.use(
-//   "/api",
-//   createProxyMiddleware({
-//     target: "https://mern-ticketbooking-api.vercel.app",
-//     changeOrigin: true,
-//   })
-// );
-
 
 app.use(cookieParser());
 app.use(cors());

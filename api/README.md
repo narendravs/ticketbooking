@@ -1,23 +1,23 @@
-Installation
+1.  Installation
 
-Download the project from the following repository https://github.com/narendravs/ticketbooking.git
+2.  Download the project from the following repository https://github.com/narendravs/ticketbooking.git
 
-Install dependencies
+3.  Install dependencies
 
-cd api
+    cd api
 
-npm install
+    npm install
 
-npm start
+    npm start
 
-Techstack used for this api's are
+4.  Techstack used for this api's are
 
-Express
+    Express
 
-Node
+    Node
 
-Mongodb
+    Mongodb
 
-Jsonwebtoken
+    Jsonwebtoken
 
-Other libraries are bcrypt, cookie parser, cors ,dotenv, http-proxy-middleware
+5.  Other libraries are bcrypt, cookie parser, cors ,dotenv, http-proxy-middleware

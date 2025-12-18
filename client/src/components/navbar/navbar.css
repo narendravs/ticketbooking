@@ -22,3 +22,14 @@
   cursor: pointer;
   color: #003580;
 }
+.navUser {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.navFont {
+  font-weight: 500;
+  font-size: medium;
+  color: beige;
+}

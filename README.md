@@ -1,61 +1,61 @@
-Installation
+1.  Installation
 
-Download the project from the following repository https://github.com/narendravs/ticketbooking.git
+2.  Download the project from the following repository https://github.com/narendravs/ticketbooking.git
 
-Install dependencies
+3.  Install dependencies
 
-For api
+    1. For api
 
-cd api
+       cd api
 
-npm install
+       npm install
 
-npm start
+       npm start
 
-For Admin
+    2. For Admin
 
-cd admin
+       cd admin
 
-npm install
+       npm install
 
-npm start
+       npm start
 
-For Client
+    3. For Client
 
-cd client
+       cd client
 
-npm install
+       npm install
 
-npm start
+       npm start
 
-Techstack used for this api's are
+4.  Techstack used for this api's are
 
-React
+    React
 
-Express
+    Express
 
-Node
+    Node
 
-Mongodb
+    Mongodb
 
-Jsonwebtoken
+    Jsonwebtoken
 
-React-router & React-router-dom used for navigating the pages acrros the appliction by using these react api.
+    React-router & React-router-dom used for navigating the pages acrros the appliction by using these react api.
 
-Redux is used to maintain the state of the applicion.
+    Redux is used to maintain the state of the applicion.
 
-Features
+5.  Features
 
-Authentication of the user to login/register pages
+    Authentication of the user to login/register pages
 
-Home page which conatins the information about the places hotels traveling and you can book the tickets.
+    Home page which conatins the information about the places hotels traveling and you can book the tickets.
 
-You can view the tickets booking onformation once you booked.
+    You can view the tickets booking onformation once you booked.
 
-Logout functionality on the navbar.
+    Logout functionality on the navbar.
 
-You can search the by the hotel name or by city.
+    You can search the by the hotel name or by city.
 
-You can view the list of the hotels by city or by hotel name
+    You can view the list of the hotels by city or by hotel name
 
-You can add the hotel and upload the images for the hotles.
+    You can add the hotel and upload the images for the hotles.

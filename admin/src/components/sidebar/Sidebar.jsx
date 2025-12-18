@@ -22,15 +22,17 @@ function Sidebar() {
     <div className="sidebar">
       <div className="top">
         <Link to="/" style={{ textDecoration: "none" }}>
-          <span className="logo">lamadev</span>
+          <span className="logo">Travel</span>
         </Link>
       </div>
       <div className="center">
         <ul>
           <p className="title">MAIN</p>
           <li>
-            <DashboardIcon className="icon" />
-            <span>Dashboard</span>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <DashboardIcon className="icon" />
+              <span>Dashboard</span>
+            </Link>
           </li>
 
           <p className="title">LISTS</p>
@@ -90,7 +92,7 @@ function Sidebar() {
         </ul>
       </div>
       <div className="bottom">
-        <span style={{ fontWeight: "500", margin: "30px" }}>Select Color</span>
+        <span style={{ fontWeight: "500", margin: "0px" }}>Select Color</span>
         <div
           className="colorOption"
           onClick={() => dispatch({ type: "LIGHT" })}
