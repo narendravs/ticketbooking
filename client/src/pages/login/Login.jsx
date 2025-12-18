@@ -98,10 +98,6 @@ function Login() {
     setError(null);
   };
 
-  const handleRegister = () => {
-    navigate("/register");
-  };
-
   return (
     <div className="login-container-wrapper">
       <div className="screen-1">
