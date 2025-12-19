@@ -23,7 +23,7 @@ const useFetch = (url) => {
       setLoading(false);
     };
     fetchData();
-  }, [url, BASE_URL]);
+  }, [url]);
 
   // 2. POST Function (Triggered manually)
   const postData = async (payload) => {
