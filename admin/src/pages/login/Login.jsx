@@ -2,12 +2,12 @@ import React, { useState, useContext } from "react";
 import "./login.css";
 import { AuthContext } from "../../context/AuthContext.js";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import {
   IoMailOutline,
   IoLockClosedOutline,
   IoEyeOutline,
 } from "react-icons/io5";
+import useFetch from "../../hooks/useFetch.js";
 
 function Login() {
   const [credentials, setCredentials] = useState({
@@ -25,15 +25,18 @@ function Login() {
   const handleChange = (e) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
+
+  const { postData } = useFetch("/auth/login");
+
   const handleClick = async (e) => {
     e.preventDefault();
     try {
       dispatch({ type: "LOGIN_START" });
-      const res = await axios.post("/user", credentials);
-
-      console.log(res.data);
-      if (res.data.isAdmin) {
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      // const res = await axios.post("/auth/login", credentials);
+      const data = await postData(credentials);
+      console.log(data);
+      if (data.isAdmin) {
+        dispatch({ type: "LOGIN_SUCCESS", payload: data });
         navigate("/");
       } else {
         dispatch({
