@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+
 const useFetch = (url) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -9,7 +10,7 @@ const useFetch = (url) => {
     const fetchData = async () => {
       setLoading(true);
       try {
-        const BASE_URL = "https://ticketbooking-5eoj.onrender.com/api";
+        const BASE_URL = process.env.REACT_APP_API_URL;
         const fullUrl = `${BASE_URL}${url}`;
         console.log(fullUrl);
         const res = await axios.get(fullUrl);
