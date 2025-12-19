@@ -7,17 +7,14 @@ import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
 import roomsRoute from "./routes/rooms.js";
 import hotelRoute from "./routes/hotels.js";
-import { createProxyMiddleware } from "http-proxy-middleware";
 
 const app = express();
 dotenv.config();
 
 //mongoose connection
-mongoose.connect(
-  process.env.URL,
-  {
-    useNewUrlParser: true,
-  });
+mongoose.connect(process.env.URL, {
+  useNewUrlParser: true,
+});
 
 //test the connection
 const db = mongoose.connection;
@@ -26,12 +23,31 @@ db.once("open", function () {
   console.log(" Mongoose Connected successfully new");
 });
 
-app.use(cors({
-  origin: "https://mern-ticketbooking-client.vercel.app", // Your frontend URL
-  methods: ["GET", "POST", "PUT", "DELETE"],
-  credentials: true
-}));
+const allowedOrigins = [
+  "http://localhost:4000",
+  "http://localhost:5000",
+  "https://mern-ticketbooking-client.vercel.app",
+  "https://mern-ticketbooking-admin.vercel.app",
+];
 
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // allow requests with no origin (like mobile apps or curl requests)
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
+
+//app.use(cors());
 app.use(cookieParser());
 
 app.use(express.json());
