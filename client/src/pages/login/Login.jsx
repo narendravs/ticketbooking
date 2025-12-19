@@ -2,13 +2,12 @@ import React, { useState, useContext } from "react";
 import "./login.css";
 import { AuthContext } from "../../context/AuthContex";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import {
   IoMailOutline,
   IoLockClosedOutline,
   IoEyeOutline,
 } from "react-icons/io5";
-
+import useFetch from "../../hooks/useFetch";
 function Login() {
   const [credentials, setCredentials] = useState({
     email: undefined,
@@ -18,6 +17,7 @@ function Login() {
   const navigate = useNavigate();
 
   const { loading, error, dispatch } = useContext(AuthContext);
+  const { postData } = useFetch("/auth/login");
 
   const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
   const [forgotEmail, setForgotEmail] = useState("");
@@ -30,11 +30,10 @@ function Login() {
     e.preventDefault();
     try {
       dispatch({ type: "LOGIN_START" });
-      const res = await axios.post("auth/login", credentials);
-
-      console.log(res.data);
-      if (res.data) {
-        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
+      const data = await postData(credentials);
+      console.log(data);
+      if (data) {
+        dispatch({ type: "LOGIN_SUCCESS", payload: data });
         navigate("/");
       } else {
         dispatch({
