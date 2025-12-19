@@ -12,6 +12,7 @@ function List() {
   const location = useLocation();
   const [destination] = useState(location.state.destination);
   const [dates, setDates] = useState(location.state.dates);
+
   // const [dates, setDates] = useState([
   //   {
   //     startDate: new Date(),
