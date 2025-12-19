@@ -4,12 +4,11 @@ import { faCircleXmark } from "@fortawesome/free-solid-svg-icons";
 import "./reserve.css";
 import useFetch from "../../hooks/useFetch";
 import { SearchContext } from "../../context/SearchContext";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Reserve({ setOpen, hotelId }) {
   const [selectedRooms, setSelectedRooms] = useState([]);
-  const { data } = useFetch(`/rooms/${hotelId}`);
+  const { data, putData } = useFetch(`/rooms/${hotelId}`);
   const { dates } = useContext(SearchContext);
 
   const getDatesInRange = (startDate, endDate) => {
@@ -53,15 +52,22 @@ function Reserve({ setOpen, hotelId }) {
 
   const handleClick = async () => {
     try {
+      // await Promise.all(
+      //   selectedRooms.map((roomId) => {
+      //     const res = axios.put(`/rooms/availability/${roomId}`, {
+      //       dates: alldates,
+      //     });
+      //     return res.data;
+      //   })
+      // );
       await Promise.all(
         selectedRooms.map((roomId) => {
-          const res = axios.put(`/rooms/availability/${roomId}`, {
-            dates: alldates,
-          });
-          return res.data;
+          // We pass the specific URL for each room as the second argument
+          return putData({ dates: alldates }, `/rooms/availability/${roomId}`);
         })
       );
       alert("Reservation successful!");
+      setOpen(false);
       navigate("/");
     } catch (error) {
       console.log(error);
