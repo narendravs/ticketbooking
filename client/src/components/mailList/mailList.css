@@ -39,6 +39,7 @@
   border-radius: 5px;
   padding: 15px;
   cursor: pointer;
-  aligin-items: center;
+  display: flex;
+  align-items: center;
   justify-content: center;
 }

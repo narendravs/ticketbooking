@@ -217,46 +217,19 @@
     margin-top: 1.5em;
     padding-top: 1em;
     border-top: 1px solid #e9ecef;
-    .register-success-message {
-      color: #28a745;
-      font-size: 0.9em;
-      text-align: center;
-      background: rgba(40, 167, 69, 0.1);
-      padding: 0.8em 1em;
-      border-radius: 8px;
-      border: 1px solid rgba(40, 167, 69, 0.3);
-      width: 100%;
-      margin-top: 1em;
-      line-height: 1.3;
-    }
   }
 
-  .register-nav-text {
-    color: #6c757d;
+  .register-success-message {
+    color: #28a745;
     font-size: 0.9em;
-  }
-
-  .register-nav-link {
-    color: #adff2f;
-    font-weight: 600;
-    cursor: pointer;
-    font-size: 0.9em;
-    transition: color 0.3s ease;
-    cursor: pointer;
-  }
-  .register-nav-link: :hover {
-    color: #ff4444;
-    text-decoration: underline;
-  }
-  /* Register navigation styles - Updated */
-  .register-navigation {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1.2em;
-    margin-top: 1.5em;
-    padding-top: 1em;
-    border-top: 1px solid #e9ecef;
+    text-align: center;
+    background: rgba(40, 167, 69, 0.1);
+    padding: 0.8em 1em;
+    border-radius: 8px;
+    border: 1px solid rgba(40, 167, 69, 0.3);
+    width: 100%;
+    margin-top: 1em;
+    line-height: 1.3;
   }
 
   .register-nav-text {
@@ -291,9 +264,5 @@
   .register-nav-link:active {
     color: #003d82;
     background-color: rgba(0, 123, 255, 0.2);
-  }
-  .register-nav-link:hover {
-    color: #ff4444;
-    text-decoration: underline;
   }
 }

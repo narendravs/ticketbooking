@@ -92,15 +92,21 @@ function Sidebar() {
         </ul>
       </div>
       <div className="bottom">
-        <span style={{ fontWeight: "500", margin: "0px" }}>Select Color</span>
+        <span style={{ fontWeight: "500", margin: "0px", color: "grey" }}>
+          Select Color
+        </span>
         <div
           className="colorOption"
           onClick={() => dispatch({ type: "LIGHT" })}
         >
-          <span style={{ cursor: "pointer", margin: "30px" }}>Light</span>
+          <span style={{ cursor: "pointer", margin: "30px", color: "grey" }}>
+            Light
+          </span>
         </div>
         <div className="colorOption" onClick={() => dispatch({ type: "DARK" })}>
-          <span style={{ cursor: "pointer", margin: "30px" }}>Dark</span>
+          <span style={{ cursor: "pointer", margin: "30px", color: "grey" }}>
+            Dark
+          </span>
         </div>
       </div>
     </div>

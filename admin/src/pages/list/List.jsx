@@ -8,13 +8,19 @@ function List() {
   return (
     <div className="mainContainer">
       <Navbar />
-      <div className="list">
+      <div className="listMain">
         <Sidebar />
+        <Datatable />
+      </div>
 
+      {/*<div className="list">
+        <div className="sidebar">
+          <Sidebar />
+        </div>
         <div className="listContainer">
           <Datatable />
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

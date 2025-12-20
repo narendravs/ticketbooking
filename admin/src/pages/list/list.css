@@ -1,14 +1,16 @@
 .mainContainer {
   display: flex;
   flex-direction: column;
-  /* height: max-content;
-  width: max-content; */
-}
-.list {
-  display: flex;
-  margin: 10px;
 }
 
+.listMain {
+  display: flex;
+  flex-direction: row;
+}
+
+.listMain .sidebar {
+  flex: 1;
+}
 .listContainer {
   flex: 6;
 }

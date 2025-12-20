@@ -33,12 +33,11 @@ function New({ inputs, title }) {
   };
   return (
     <div className="new">
-      <div>
-        <Navbar />
-      </div>
-
+      <Navbar />
       <div className="container">
-        <Sidebar />
+        <div className="sidebar">
+          <Sidebar />
+        </div>
         <div className="newContainer">
           <div className="top">
             <h1>{title}</h1>

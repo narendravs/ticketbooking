@@ -10,14 +10,13 @@ import "./home.css";
 function Home() {
   return (
     <div className="home">
-      <div>
-        <Navbar />
-      </div>
-      <div className="homeContainer">
+      <Navbar />
+      <div className="container">
         <div className="sidebar">
           <Sidebar />
         </div>
-        <div>
+
+        <div className="mainContent">
           <div className="widgets">
             <Widget type="user" />
             <Widget type="order" />
@@ -33,9 +32,7 @@ function Home() {
             <Table />
           </div>
         </div>
-      </div>{" "}
-      */}
-      <p>Hello</p>
+      </div>
     </div>
   );
 }

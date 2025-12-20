@@ -49,10 +49,10 @@
   border: none;
   outline: none;
   background: transparent;
+}
 
-  &::placeholder {
-    font-size: 12px;
-  }
+.search > input::placeholder {
+  font-size: 12px;
 }
 
 .items {

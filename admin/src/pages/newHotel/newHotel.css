@@ -4,96 +4,112 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
-  /* height: 1800px; */
-  .container {
-    display: flex;
-    flex-direction: row;
+}
 
-    .newContainer {
-      display: flex;
-      flex-direction: column;
-      flex: 6;
-      width: 100%;
-      height: 100%;
+.new .container {
+  display: flex;
+  flex-direction: row;
+}
 
-      .top,
-      .bottom {
-        -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-        box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-        padding: 10px;
-        margin: 20px;
-        display: flex;
+.new .container .sidebar {
+  flex: 1;
+}
 
-        h1 {
-          color: lightgray;
-          font-size: 20px;
-        }
+.new .container .newContainer {
+  display: flex;
+  flex-direction: column;
+  flex: 6;
+  width: 100%;
+  height: 100%;
+}
 
-        .left {
-          flex: 1;
-          text-align: center;
+.new .container .newContainer .top,
+.new .container .newContainer .bottom {
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+}
 
-          img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            object-fit: cover;
-          }
-        }
+.new .container .newContainer .top h1,
+.new .container .newContainer .bottom h1 {
+  color: lightgray;
+  font-size: 20px;
+}
 
-        .right {
-          flex: 2;
-          padding: 0px 20px;
+.new .container .newContainer .top .left,
+.new .container .newContainer .bottom .left {
+  flex: 1;
+  text-align: center;
+}
 
-          .form {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            justify-content: space-between;
+.new .container .newContainer .top .left img,
+.new .container .newContainer .bottom .left img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
-            .selectRooms {
-              width: 100%;
+.new .container .newContainer .top .right,
+.new .container .newContainer .bottom .right {
+  flex: 2;
+  padding: 0px 20px;
+}
 
-              .select {
-                width: 100%;
-                padding: 10px;
-              }
-            }
+.new .container .newContainer .top .right .form,
+.new .container .newContainer .bottom .right .form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: space-between;
+}
 
-            .formInput {
-              width: 100%;
+.new .container .newContainer .top .right .form .selectRooms,
+.new .container .newContainer .bottom .right .form .selectRooms {
+  width: 100%;
+}
 
-              .label {
-                display: flex;
-                align-items: center;
-                gap: 10px;
+.new .container .newContainer .top .right .form .selectRooms .select,
+.new .container .newContainer .bottom .right .form .selectRooms .select {
+  width: 100%;
+  padding: 10px;
+}
 
-                .icon {
-                  cursor: pointer;
-                }
-              }
+.new .container .newContainer .top .right .form .formInput,
+.new .container .newContainer .bottom .right .form .formInput {
+  width: 100%;
+}
 
-              .input1 {
-                width: 100%;
-                padding: 5px;
-                border: none;
-                border-bottom: 1px solid gray;
-              }
-            }
+.new .container .newContainer .top .right .form .formInput .label,
+.new .container .newContainer .bottom .right .form .formInput .label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
-            button {
-              width: 150px;
-              padding: 10px;
-              border: none;
-              background-color: teal;
-              color: white;
-              font-weight: bold;
-              cursor: pointer;
-              margin-top: 10px;
-            }
-          }
-        }
-      }
-    }
-  }
+.new .container .newContainer .top .right .form .formInput .label .icon,
+.new .container .newContainer .bottom .right .form .formInput .label .icon {
+  cursor: pointer;
+}
+
+.new .container .newContainer .top .right .form .formInput .input1,
+.new .container .newContainer .bottom .right .form .formInput .input1 {
+  width: 100%;
+  padding: 5px;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+.new .container .newContainer .top .right .form button,
+.new .container .newContainer .bottom .right .form button {
+  width: 150px;
+  padding: 10px;
+  border: none;
+  background-color: teal;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
 }

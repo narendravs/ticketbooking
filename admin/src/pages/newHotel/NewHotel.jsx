@@ -53,7 +53,9 @@ function NewHotel() {
     <div className="new">
       <Navbar />
       <div className="container">
-        <Sidebar />
+        <div className="sidebar">
+          <Sidebar />
+        </div>
         <div className="newContainer">
           <div className="top">
             <h1>Add New Product</h1>

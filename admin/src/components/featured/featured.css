@@ -3,66 +3,76 @@
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 10px;
+}
 
-  .top {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    color: grey;
+.featured .top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: grey;
+}
 
-    .title {
-      font-size: 16px;
-      font-weight: 500;
-    }
-  }
-  .bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    gap: 10px;
-    .featuredChart {
-      width: 100px;
-      height: 100px;
-    }
-    .title {
-      font-weight: 500;
-      color: grey;
-    }
-    .amount {
-      font-size: 30px;
-    }
-    .desc {
-      font-weight: 500;
-      color: grey;
-      text-align: center;
-    }
-  }
-  .summary {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    .item {
-      text-align: center;
+.featured .top .title {
+  font-size: 16px;
+  font-weight: 500;
+}
 
-      .itemTitle {
-        font-size: 14px;
-        color: gray;
-      }
-      .itemResult {
-        display: flex;
-        align-items: center;
-        margin-top: 10px;
-        font-size: 14px;
-        &.positive {
-          color: green;
-        }
-        &.negative {
-          color: red;
-        }
-      }
-    }
-  }
+.featured .bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 10px;
+}
+
+.featured .bottom .featuredChart {
+  width: 100px;
+  height: 100px;
+}
+
+.featured .bottom .title {
+  font-weight: 500;
+  color: grey;
+}
+
+.featured .bottom .amount {
+  font-size: 30px;
+}
+
+.featured .bottom .desc {
+  font-weight: 500;
+  color: grey;
+  text-align: center;
+}
+
+.featured .summary {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.featured .summary .item {
+  text-align: center;
+}
+
+.featured .summary .item .itemTitle {
+  font-size: 14px;
+  color: gray;
+}
+
+.featured .summary .item .itemResult {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.featured .summary .item .itemResult.positive {
+  color: green;
+}
+
+.featured .summary .item .itemResult.negative {
+  color: red;
 }

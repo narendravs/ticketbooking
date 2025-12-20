@@ -1,74 +1,90 @@
 .single {
   display: flex;
-  .singleContainer {
-    flex: 6;
-  }
-  .top {
-    padding: 20px;
-    display: flex;
-    gap: 20px;
+  flex-direction: column;
+}
+.single .singleContainer {
+  display: flex;
+  flex-direction: row;
+  flex: 6;
+}
 
-    .left {
-      flex: 1;
-      -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-      box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-      padding: 20px;
-      position: relative;
-    }
-    .editButton {
-      position: absolute;
-      top: 0;
-      right: 0;
-      padding: 5px;
-      font-size: 12px;
-      color: #7451f8;
-      background-color: #7551f818;
-      cursor: pointer;
-      border-radius: 0px 0px 0px 5px;
-    }
-    .item {
-      display: flex;
-      gap: 20px;
-      .itemImg {
-        width: 100px;
-        height: 100px;
-        border-radius: 50%;
-        object-fit: cover;
-        background-color: #7451f8;
-      }
-    }
-    .details {
-      .itemTitle {
-        margin-bottom: 10px;
-        color: #555;
-      }
-      .detailItem {
-        margin-bottom: 10px;
-        font-size: 14px;
-      }
-      .itemKey {
-        font-weight: bold;
-        color: gray;
-        margin-right: 5px;
-      }
-      .itemValue {
-        font-weight: 300;
-      }
-    }
-  }
-  .right {
-    flex: 2;
-    background-color: whitesmoke;
-  }
-  .bottom {
-    -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
-    box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
-    padding: 20px;
-    margin: 10px 20px;
-  }
-  .title1 {
-    font-size: 16px;
-    color: lightgray;
-    margin-bottom: 20px;
-  }
+.single .singleContainer .sidebar {
+  flex: 1;
+}
+
+.single .top {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+}
+
+.single .top .left {
+  flex: 1;
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 20px;
+  position: relative;
+}
+
+.single .top .editButton {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px;
+  font-size: 12px;
+  color: #7451f8;
+  background-color: #7551f818;
+  cursor: pointer;
+  border-radius: 0px 0px 0px 5px;
+}
+
+.single .top .item {
+  display: flex;
+  gap: 20px;
+}
+
+.single .top .item .itemImg {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: #7451f8;
+}
+
+.single .top .details .itemTitle {
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.single .top .details .detailItem {
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.single .top .details .itemKey {
+  font-weight: bold;
+  color: gray;
+  margin-right: 5px;
+}
+
+.single .top .details .itemValue {
+  font-weight: 300;
+}
+
+.single .right {
+  flex: 2;
+  background-color: whitesmoke;
+}
+
+.single .bottom {
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 20px;
+  margin: 10px 20px;
+}
+
+.single .title1 {
+  font-size: 16px;
+  color: lightgray;
+  margin-bottom: 20px;
 }
