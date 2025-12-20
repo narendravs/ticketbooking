@@ -26,8 +26,8 @@ db.once("open", function () {
 const allowedOrigins = [
   "http://localhost:4000",
   "http://localhost:5000",
-  "https://mern-ticketbooking-client.vercel.app",
-  "https://mern-ticketbooking-admin.vercel.app",
+  "https://ticketbooking-client.vercel.app/",
+  "https://ticketbooking-admin.vercel.app/",
 ];
 
 app.use(
