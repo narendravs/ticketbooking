@@ -1,0 +1,15 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  /* height: max-content;
+  width: max-content; */
+}
+.list {
+  display: flex;
+  flex-direction: row;
+  margin: 10px;
+}
+
+.listContainer {
+  flex: 6;
+}
