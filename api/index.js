@@ -20,14 +20,14 @@ mongoose.connect(process.env.URL, {
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
-  console.log(" Mongoose Connected successfully new");
+  console.log(" Mongoose Connected successfully");
 });
 
 const allowedOrigins = [
   "http://localhost:4000",
   "http://localhost:5000",
-  "https://ticketbooking-client.vercel.app/",
-  "https://ticketbooking-admin.vercel.app/",
+  "https://ticketbooking-client.vercel.app",
+  "https://ticketbooking-admin.vercel.app",
 ];
 
 app.use(
