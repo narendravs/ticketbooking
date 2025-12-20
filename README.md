@@ -44,7 +44,12 @@
 
     Redux is used to maintain the state of the applicion.
 
-5.  Features
+5.  Access for the application links
+
+    1.  Client : https://ticketbooking-client.vercel.app (test123@gmail.com/test123)
+    2.  Admin Dashboard : https://ticketbooking-admin.vercel.app (test123@gmail.com/test123)
+
+6.  Features
 
     Authentication of the user to login/register pages
 
