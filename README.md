@@ -46,8 +46,8 @@
 
 5.  Access for the application links
 
-    1.  Client : https://ticketbooking-client.vercel.app/ (test123@gmail.com/test123)
-    2.  Admin Dashboard : https://ticketbooking-admin.vercel.app/login (test123@gmail.com/test123)
+    1.  Client : https://ticketbooking-client.vercel.app (test123@gmail.com/test123)
+    2.  Admin Dashboard : https://ticketbooking-admin.vercel.app (test123@gmail.com/test123)
 
 6.  Features
 
