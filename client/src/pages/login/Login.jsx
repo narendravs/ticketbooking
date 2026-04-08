@@ -2,25 +2,25 @@ import React, { useState, useContext } from "react";
 import "./login.css";
 import { AuthContext } from "../../context/AuthContex";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import {
   IoMailOutline,
   IoLockClosedOutline,
   IoEyeOutline,
+  IoEyeOffOutline,
 } from "react-icons/io5";
+import publicRequest from "../../api/axios";
 
 function Login() {
   const [credentials, setCredentials] = useState({
-    email: undefined,
-    password: undefined,
+    email: "",
+    password: "",
   });
 
   const { dispatch, loading, error } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { loading, error, dispatch } = useContext(AuthContext);
-
   const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [forgotEmail, setForgotEmail] = useState("");
   const [logerror, setError] = useState(null);
 
@@ -31,9 +31,8 @@ function Login() {
     e.preventDefault();
     try {
       dispatch({ type: "LOGIN_START" });
-      const res = await axios.post("auth/login", credentials);
+      const res = await publicRequest.post("/auth/login", credentials);
 
-      console.log(res.data);
       if (res.data) {
         dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
         navigate("/");
@@ -43,13 +42,14 @@ function Login() {
           payload: { message: "You are not allowed!" },
         });
       }
-    } catch (error) {
-      dispatch({ type: "LOGIN_FAILURE", payload: error });
+    } catch (err) {
+      const errorMessage =
+        err.response?.data?.message || "Something went wrong!";
+      dispatch({
+        type: "LOGIN_FAILURE",
+        payload: { message: errorMessage },
+      });
     }
-  };
-
-  const handleRegister = () => {
-    navigate("/register");
   };
 
   const handleForgotEmailChange = (e) => {
@@ -81,7 +81,7 @@ function Login() {
     try {
       // await axios.post('/auth/forgot-password', { email: forgotEmail });
       alert(
-        `Password reset link has been sent to ${forgotEmail}. Please check your email.`
+        `Password reset link has been sent to ${forgotEmail}. Please check your email.`,
       );
       // Close the modal
       setIsForgotModalOpen(false);
@@ -126,13 +126,25 @@ function Login() {
             <IoLockClosedOutline />
             <input
               className="pas"
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               id="password"
               placeholder="············"
               onChange={handleChange}
             />
-            <IoEyeOutline className="show-hide" />
+            {showPassword ? (
+              <IoEyeOffOutline
+                className="show-hide"
+                onClick={() => setShowPassword(false)}
+                style={{ cursor: "pointer" }}
+              />
+            ) : (
+              <IoEyeOutline
+                className="show-hide"
+                onClick={() => setShowPassword(true)}
+                style={{ cursor: "pointer" }}
+              />
+            )}
           </div>
         </div>
 
