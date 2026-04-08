@@ -19,15 +19,16 @@ export const login = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
     if (!user) return next(createError(404, "User not found"));
+
     const isPasswordCorrect = await bcrypt.compare(
       req.body.password,
-      user.password
+      user.password,
     );
     if (!isPasswordCorrect)
       return next(createError(400, "Wrong password or email"));
     const token = jwt.sign(
       { id: user._id, isAdmin: user.isAdmin },
-      process.env.JWT
+      process.env.JWT,
     );
     const { password, isAdmin, ...otherDetails } = user._doc;
     res
