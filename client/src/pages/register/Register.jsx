@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./register.css";
+import publicRequest from "../../api/axios";
 
 function Register() {
   const [credentials, setCredentials] = useState({
@@ -49,7 +49,7 @@ function Register() {
     }
 
     try {
-      await axios.post("/auth/register", credentials);
+      await publicRequest.post("/auth/register", credentials);
       setSuccess({ message: "Registration successful! Please log in." });
       setLoading(false);
     } catch (err) {
