@@ -3,11 +3,12 @@ import "./new.css";
 import Sidebar from "../../components/sidebar/Sidebar";
 import Navbar from "../../components/navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
-import axios from "axios";
+import useFetch from "../../hooks/useFetch";
 
 function New({ inputs, title }) {
   const [file, setFile] = useState("");
   const [info, setInfo] = useState({});
+  const { postData } = useFetch();
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
@@ -25,11 +26,10 @@ function New({ inputs, title }) {
       const { url } = "1.jpeg";
       const newUser = { ...info, img: url };
       alert(newUser.img, newUser.info);
-      await axios.post("auth/register", newUser);
+      await postData("auth/register", newUser);
     } catch (error) {
       console.log(error);
     }
-    alert("hello .....");
   };
   return (
     <div className="new">

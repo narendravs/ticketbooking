@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const BASE_URL = process.env.REACT_APP_API_URL;
 const useFetch = (url) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const BASE_URL = process.env.API_APP_URL;
   // 1. GET Function (Auto triggered)
   useEffect(() => {
     // This line acts as a "Gatekeeper"
@@ -15,9 +15,7 @@ const useFetch = (url) => {
       setLoading(true);
       try {
         const fullUrl = `${BASE_URL}${url}`;
-        console.log(fullUrl);
         const res = await axios.get(fullUrl);
-        console.log(res.data);
         setData(res.data);
       } catch (error) {
         setError(error);
@@ -31,7 +29,7 @@ const useFetch = (url) => {
   const reFetch = async () => {
     setLoading(true);
     try {
-      const res = axios.get(url);
+      const res = await axios.get(`${BASE_URL}${url}`);
       setData(res.setData);
     } catch (error) {
       setError(error);

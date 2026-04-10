@@ -23,39 +23,41 @@ db.once("open", function () {
   console.log(" Mongoose Connected successfully");
 });
 
-const allowedOrigins = [
-  "http://localhost:4000",
-  "http://localhost:5000",
-  "https://ticketbooking-client.vercel.app",
-  "https://ticketbooking-admin.vercel.app",
-];
-
 app.use(
   cors({
-    origin: function (origin, callback) {
-      // allow requests with no origin (like mobile apps or curl requests)
-      if (!origin) return callback(null, true);
-
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: [
+      "https://mern-ticketbooking-client.vercel.app", // Client Frontend
+      "https://ticketbooking-admin.vercel.app", // Admin Frontend
+      "http://localhost:4000",
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
-  })
+  }),
 );
 
-//app.use(cors());
 app.use(cookieParser());
 
 app.use(express.json());
+
+app.get("/test", (req, res) => {
+  res.send("Server is alive on Port 8000");
+});
 
 app.use("/api/auth", authRoute);
 app.use("/api/users", usersRoute);
 app.use("/api/rooms", roomsRoute);
 app.use("/api/hotels", hotelRoute);
+
+app.use((err, req, res, next) => {
+  const errorStatus = err.status || 500;
+  const errorMessage = err.message || "Something went wrong!";
+  return res.status(errorStatus).json({
+    success: false,
+    status: errorStatus,
+    message: errorMessage,
+    stack: err.stack,
+  });
+});
 
 app.listen(8000, () => {
   console.log("App running on the PORT 8000 Successfully");

@@ -33,7 +33,7 @@ function Reserve({ setOpen, hotelId }) {
 
   const isAvailable = (roomNumber) => {
     const isFound = roomNumber.unavailableDates.some((date) =>
-      alldates.includes(new Date(date).getTime())
+      alldates.includes(new Date(date).getTime()),
     );
     return !isFound;
   };
@@ -44,7 +44,7 @@ function Reserve({ setOpen, hotelId }) {
     setSelectedRooms(
       checked
         ? [...selectedRooms, value]
-        : selectedRooms.filter((item) => item !== value)
+        : selectedRooms.filter((item) => item !== value),
     );
   };
 
@@ -52,22 +52,17 @@ function Reserve({ setOpen, hotelId }) {
 
   const handleClick = async () => {
     try {
-      // await Promise.all(
-      //   selectedRooms.map((roomId) => {
-      //     const res = axios.put(`/rooms/availability/${roomId}`, {
-      //       dates: alldates,
-      //     });
-      //     return res.data;
-      //   })
-      // );
       await Promise.all(
         selectedRooms.map((roomId) => {
-          // We pass the specific URL for each room as the second argument
-          return putData({ dates: alldates }, `/rooms/availability/${roomId}`);
-        })
+          // Use the hook's method!
+          // It automatically adds BASE_URL + customUrl
+          return putData(
+            { dates: alldates },
+            `/rooms/availability/${roomId}`, // This is the customUrl param
+          );
+        }),
       );
       alert("Reservation successful!");
-      setOpen(false);
       navigate("/");
     } catch (error) {
       console.log(error);

@@ -10,13 +10,14 @@ import "./home.css";
 function Home() {
   return (
     <div className="home">
-      <Navbar />
-      <div className="container">
+      <div>
+        <Navbar />
+      </div>
+      <div className="homeContainer">
         <div className="sidebar">
           <Sidebar />
         </div>
-
-        <div className="mainContent">
+        <div>
           <div className="widgets">
             <Widget type="user" />
             <Widget type="order" />

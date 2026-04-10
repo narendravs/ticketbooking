@@ -10,17 +10,10 @@ function List() {
       <Navbar />
       <div className="listMain">
         <Sidebar />
-        <Datatable />
-      </div>
-
-      {/*<div className="list">
-        <div className="sidebar">
-          <Sidebar />
-        </div>
         <div className="listContainer">
           <Datatable />
         </div>
-      </div> */}
+      </div>
     </div>
   );
 }

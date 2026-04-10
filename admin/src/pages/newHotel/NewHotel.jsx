@@ -5,13 +5,12 @@ import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUpload
 import { hotelInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
 import "./newHotel.css";
-import axios from "axios";
 
 function NewHotel() {
   const [files, setFiles] = useState("");
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
-  const { data, loading } = useFetch("/rooms");
+  const { data, loading, postData } = useFetch("/rooms");
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -20,7 +19,7 @@ function NewHotel() {
   const handleSlect = (e) => {
     const value = Array.from(
       e.target.selectedOptions,
-      (option) => option.value
+      (option) => option.value,
     );
     setRooms(value);
   };
@@ -43,7 +42,7 @@ function NewHotel() {
       // );
       const list = [];
       const newHotel = { ...info, rooms, photos: list };
-      await axios.post("/hotels", newHotel);
+      await postData("/hotels", newHotel);
     } catch (error) {
       console.log(error);
     }

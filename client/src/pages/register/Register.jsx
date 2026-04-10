@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./register.css";
-import useFetch from "../../hooks/useFetch";
+import publicRequest from "../../api/axios";
+
 function Register() {
   const [credentials, setCredentials] = useState({
     username: "",
@@ -17,7 +18,6 @@ function Register() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
-  const { postData } = useFetch("/auth/register");
 
   const handleChange = (e) => {
     const value =
@@ -49,8 +49,7 @@ function Register() {
     }
 
     try {
-      //await axios.post("/auth/register", credentials);
-      await postData(credentials);
+      await publicRequest.post("/auth/register", credentials);
       setSuccess({ message: "Registration successful! Please log in." });
       setLoading(false);
     } catch (err) {

@@ -13,26 +13,14 @@ function List() {
   const [destination] = useState(location.state.destination);
   const [dates, setDates] = useState(location.state.dates);
 
-  // const [dates, setDates] = useState([
-  //   {
-  //     startDate: new Date(),
-  //     endDate: new Date(),
-  //     key: "selection",
-  //   },
-  // ]);
-
   const [openDate, setOpenDate] = useState(false);
   const [options] = useState(location.state.options);
-  // const [options, setOptions] = useState({
-  //   adult: 1,
-  //   children: 0,
-  //   room: 1,
-  // });
+
   const [min, setMin] = useState(undefined);
   const [max, setMax] = useState(undefined);
 
   const { data, loading, reFetch } = useFetch(
-    `/hotels?city=${destination}&min=${min || 0}&max=${max || 999}&limit=5`
+    `/hotels?city=${destination}&min=${min || 0}&max=${max || 999}&limit=5`,
   );
   const handleClick = () => {
     reFetch();
@@ -53,14 +41,19 @@ function List() {
               <label>Check-in Date</label>
               <span onClick={() => setOpenDate(!openDate)}>{`${format(
                 dates[0].startDate,
-                "MM/dd/yyyy"
+                "MM/dd/yyyy",
               )} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}</span>
+
               {openDate && (
-                <DateRange
-                  onChange={(item) => setDates([item.selection])}
-                  minDate={new Date()}
-                  ranges={dates}
-                />
+                <div className="dateRangePicker">
+                  {" "}
+                  {/* Wrap it here */}
+                  <DateRange
+                    onChange={(item) => setDates([item.selection])}
+                    minDate={new Date()}
+                    ranges={dates}
+                  />
+                </div>
               )}
             </div>
             <div className="lsItem">
@@ -122,9 +115,13 @@ function List() {
               "loading"
             ) : (
               <>
-                {data.map((item) => (
-                  <SearchItem item={item} key={item._id} />
-                ))}
+                {data?.length > 0 ? (
+                  data.map((item) => <SearchItem item={item} key={item._id} />)
+                ) : (
+                  <div className="noData">
+                    No hotels found in {destination}.
+                  </div>
+                )}
               </>
             )}
           </div>

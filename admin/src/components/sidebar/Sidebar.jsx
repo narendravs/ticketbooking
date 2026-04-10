@@ -92,9 +92,7 @@ function Sidebar() {
         </ul>
       </div>
       <div className="bottom">
-        <span style={{ fontWeight: "500", margin: "0px", color: "grey" }}>
-          Select Color
-        </span>
+        <span style={{ fontWeight: "500", margin: "0px" }}>Select Color</span>
         <div
           className="colorOption"
           onClick={() => dispatch({ type: "LIGHT" })}

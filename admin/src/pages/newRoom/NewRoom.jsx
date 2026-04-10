@@ -4,13 +4,12 @@ import Navbar from "../../components/navbar/Navbar";
 import "./newRoom.css";
 import { roomInputs } from "../../formSource";
 import useFetch from "../../hooks/useFetch";
-import axios from "axios";
 
 function NewRoom() {
   const [info, setInfo] = useState({});
   const [rooms, setRooms] = useState([]);
   const [hotelId, setHotelId] = useState(undefined);
-  const { data, loading } = useFetch("/hotels");
+  const { data, loading, postData } = useFetch("/hotels");
 
   const handleChange = (e) => {
     setInfo((prev) => ({ ...prev, [e.target.id]: e.target.value }));
@@ -20,7 +19,7 @@ function NewRoom() {
     e.preventDefault();
     const roomNumbers = rooms.split(",").map((room) => ({ number: room }));
     try {
-      await axios.post(`/rooms/${hotelId}`, { ...info, roomNumbers });
+      await postData(`/rooms/${hotelId}`, { ...info, roomNumbers });
     } catch (error) {
       console.log(error);
     }

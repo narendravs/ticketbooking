@@ -6,20 +6,21 @@ import {
   IoMailOutline,
   IoLockClosedOutline,
   IoEyeOutline,
+  IoEyeOffOutline,
 } from "react-icons/io5";
-import useFetch from "../../hooks/useFetch";
+import publicRequest from "../../api/axios";
+
 function Login() {
   const [credentials, setCredentials] = useState({
-    email: undefined,
-    password: undefined,
+    email: "",
+    password: "",
   });
 
+  const { dispatch, loading, error } = useContext(AuthContext);
   const navigate = useNavigate();
 
-  const { loading, error, dispatch } = useContext(AuthContext);
-  const { postData } = useFetch("/auth/login");
-
   const [isForgotModalOpen, setIsForgotModalOpen] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [forgotEmail, setForgotEmail] = useState("");
   const [logerror, setError] = useState(null);
 
@@ -30,10 +31,10 @@ function Login() {
     e.preventDefault();
     try {
       dispatch({ type: "LOGIN_START" });
-      const data = await postData(credentials);
-      console.log(data);
-      if (data) {
-        dispatch({ type: "LOGIN_SUCCESS", payload: data });
+      const res = await publicRequest.post("/auth/login", credentials);
+
+      if (res.data) {
+        dispatch({ type: "LOGIN_SUCCESS", payload: res.data });
         navigate("/");
       } else {
         dispatch({
@@ -41,9 +42,61 @@ function Login() {
           payload: { message: "You are not allowed!" },
         });
       }
-    } catch (error) {
-      dispatch({ type: "LOGIN_FAILURE", payload: error });
+    } catch (err) {
+      const errorMessage =
+        err.response?.data?.message || "Something went wrong!";
+      dispatch({
+        type: "LOGIN_FAILURE",
+        payload: { message: errorMessage },
+      });
     }
+  };
+
+  const handleForgotEmailChange = (e) => {
+    setForgotEmail(e.target.value);
+    setError(null);
+  };
+
+  const handleForgotPassword = () => {
+    setIsForgotModalOpen(true);
+  };
+
+  const handleResetSubmit = async () => {
+    if (!forgotEmail) {
+      setError({
+        message: "Please enter a valid email.",
+      });
+      return;
+    }
+    // Simple RegEx to check for "text@text.domain" format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(forgotEmail)) {
+      setError({
+        message: "Please enter a valid email format (e.g., user@example.com).",
+      });
+      return;
+    }
+
+    try {
+      // await axios.post('/auth/forgot-password', { email: forgotEmail });
+      alert(
+        `Password reset link has been sent to ${forgotEmail}. Please check your email.`,
+      );
+      // Close the modal
+      setIsForgotModalOpen(false);
+    } catch (err) {
+      setError({ message: "Error processing request." });
+    } finally {
+      setForgotEmail("");
+    }
+  };
+
+  // New handler to close the modal without submitting
+  const handleResetCancel = () => {
+    setIsForgotModalOpen(false);
+    setForgotEmail("");
+    setError(null);
   };
 
   const handleRegister = () => {
@@ -79,7 +132,7 @@ function Login() {
     try {
       // await axios.post('/auth/forgot-password', { email: forgotEmail });
       alert(
-        `Password reset link has been sent to ${forgotEmail}. Please check your email.`
+        `Password reset link has been sent to ${forgotEmail}. Please check your email.`,
       );
       // Close the modal
       setIsForgotModalOpen(false);
@@ -120,13 +173,25 @@ function Login() {
             <IoLockClosedOutline />
             <input
               className="pas"
-              type="password"
+              type={showPassword ? "text" : "password"}
               name="password"
               id="password"
               placeholder="············"
               onChange={handleChange}
             />
-            <IoEyeOutline className="show-hide" />
+            {showPassword ? (
+              <IoEyeOffOutline
+                className="show-hide"
+                onClick={() => setShowPassword(false)}
+                style={{ cursor: "pointer" }}
+              />
+            ) : (
+              <IoEyeOutline
+                className="show-hide"
+                onClick={() => setShowPassword(true)}
+                style={{ cursor: "pointer" }}
+              />
+            )}
           </div>
         </div>
 

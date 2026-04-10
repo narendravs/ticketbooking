@@ -32,9 +32,9 @@ function Login() {
     e.preventDefault();
     try {
       dispatch({ type: "LOGIN_START" });
-      // const res = await axios.post("/auth/login", credentials);
+
       const data = await postData(credentials);
-      console.log(data);
+
       if (data.isAdmin) {
         dispatch({ type: "LOGIN_SUCCESS", payload: data });
         navigate("/");
@@ -80,9 +80,9 @@ function Login() {
     }
 
     try {
-      // await axios.post('/auth/forgot-password', { email: forgotEmail });
+      await postData("/auth/forgot-password", { email: forgotEmail });
       alert(
-        `Password reset link has been sent to ${forgotEmail}. Please check your email.`
+        `Password reset link has been sent to ${forgotEmail}. Please check your email.`,
       );
       // Close the modal
       setIsForgotModalOpen(false);
