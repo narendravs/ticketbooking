@@ -6,7 +6,8 @@ const useFetch = (url) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  const BASE_URL = process.env.API_APP_URL;
+  const BASE_URL = process.env.REACT_APP_API_URL;
+
   // 1. GET Function (Auto triggered)
   useEffect(() => {
     // This line acts as a "Gatekeeper"
@@ -23,14 +24,14 @@ const useFetch = (url) => {
       setLoading(false);
     };
     fetchData();
-  }, [url]);
+  }, [url, BASE_URL]);
 
   // 2. REFETCH Function (Triggered manually)
   const reFetch = async () => {
     setLoading(true);
     try {
       const res = await axios.get(`${BASE_URL}${url}`);
-      setData(res.setData);
+      setData(res.data);
     } catch (error) {
       setError(error);
     }
