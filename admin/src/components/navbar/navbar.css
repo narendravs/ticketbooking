@@ -21,13 +21,15 @@
   left: 0;
   position: absolute;
   border: 1px solid #ccc;
-  background-color: greenyellow;
+  background-color: #003580; /* Navy Blue theme option */
   border-radius: 5px;
   padding: 4px 8px;
   font-size: 12px;
   font-weight: 600;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s, color 0.3s;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
   opacity: 1;
   color: grey;
   letter-spacing: 0.5px;
