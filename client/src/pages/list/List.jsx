@@ -46,8 +46,6 @@ function List() {
 
               {openDate && (
                 <div className="dateRangePicker">
-                  {" "}
-                  {/* Wrap it here */}
                   <DateRange
                     onChange={(item) => setDates([item.selection])}
                     minDate={new Date()}
