@@ -5,10 +5,26 @@ import createError from "../utils/error.js";
 
 export const register = async (req, res, next) => {
   try {
-    const slat = bcrypt.genSaltSync(10);
-    const hash = bcrypt.hashSync(req.body.password, slat);
+    // 1. Check if user already exists
+    const existingUser = await User.findOne({
+      $or: [{ email: req.body.email }, { username: req.body.username }],
+    });
+
+    if (existingUser) {
+      // Send a 409 Conflict error
+      return next(
+        createError(409, "User already exists with this email or username!"),
+      );
+    }
+
+    // 2. Hash Password
+    const salt = bcrypt.genSaltSync(10);
+    const hash = bcrypt.hashSync(req.body.password, salt);
+
+    // 3. Create and Save User
     const newUser = new User({ ...req.body, password: hash });
     await newUser.save();
+
     res.status(200).json("User has been created.");
   } catch (err) {
     next(err);
