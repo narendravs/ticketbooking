@@ -6,6 +6,7 @@ const useFetch = (url) => {
   const [loading, setLoading] = useState();
   const [error, setError] = useState();
   const BASE_URL = process.env.REACT_APP_API_URL;
+
   // 1. GET Function (Auto triggered)
   useEffect(() => {
     if (!url) return;
@@ -13,7 +14,6 @@ const useFetch = (url) => {
       setLoading(true);
       try {
         const fullUrl = `${BASE_URL}${url}`;
-        console.log(fullUrl);
         const res = await axios.get(fullUrl);
         console.log(res.data);
         setData(res.data);
@@ -23,13 +23,16 @@ const useFetch = (url) => {
       setLoading(false);
     };
     fetchData();
-  }, [url]);
+  }, [url, BASE_URL]);
 
   // 2. POST Function (Triggered manually)
-  const postData = async (customUrl = url, payload) => {
+  const postData = async (targetUrl, payload) => {
     setLoading(true);
+    console.log("base url is ", `${BASE_URL}${targetUrl}`);
     try {
-      const res = await axios.post(`${BASE_URL}${customUrl}`, payload);
+      const res = await axios.post(`${BASE_URL}${targetUrl}`, payload, {
+        withCredentials: true,
+      });
       setData(res.data);
       return res.data; // Return so you can use .then() in your component
     } catch (err) {
