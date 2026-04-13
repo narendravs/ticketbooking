@@ -64,6 +64,7 @@
 .headerSearchInput {
   border: none;
   outline: none;
+  color: lightgray;
 }
 .headerSearchText {
   color: lightgray;
