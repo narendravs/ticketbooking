@@ -26,14 +26,23 @@ db.once("open", function () {
 app.use(
   cors({
     origin: [
-      "https://mern-ticketbooking-client.vercel.app", // Client Frontend
-      "https://ticketbooking-admin.vercel.app", // Admin Frontend
+      "http://localhost:5001",
+      "http://127.0.0.1:5001",
+      "https://mern-ticketbooking-client.vercel.app",
+      "https://ticketbooking-admin.vercel.app",
       "http://localhost:4000",
     ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     credentials: true,
   }),
 );
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Credentials", "true");
+  if (req.method === "OPTIONS") {
+    return res.status(200).send("ok");
+  }
+  next();
+});
 
 app.use(cookieParser());
 
