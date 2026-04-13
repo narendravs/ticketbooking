@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./register.css";
-import publicRequest from "../../api/axios";
+import publicRequest from "../../axios/axios";
 
 function Register() {
   const [credentials, setCredentials] = useState({
@@ -33,7 +33,15 @@ function Register() {
     setLoading(true);
     setError(null);
     setSuccess(null);
-
+    const initialCredentials = {
+      username: "",
+      email: "",
+      password: "",
+      country: "",
+      city: "",
+      phone: "",
+      isAdmin: false,
+    };
     if (!credentials.username || !credentials.email || !credentials.password) {
       setError({ message: "Username, email, and password are required." });
       setLoading(false);
@@ -50,6 +58,7 @@ function Register() {
 
     try {
       await publicRequest.post("/auth/register", credentials);
+      setCredentials(initialCredentials);
       setSuccess({ message: "Registration successful! Please log in." });
       setLoading(false);
     } catch (err) {
