@@ -18,7 +18,7 @@ function Register() {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(null);
   const navigate = useNavigate();
-  const { postData } = useFetch("/auth/register");
+  const { postData } = useFetch();
   const handleChange = (e) => {
     const value =
       e.target.type === "checkbox" ? e.target.checked : e.target.value;
@@ -49,13 +49,12 @@ function Register() {
     }
 
     try {
-      //await axios.post("/auth/register", credentials);
-      await postData(credentials);
+      await postData("/auth/register", credentials);
       setSuccess({ message: "Registration successful! Please log in." });
       setLoading(false);
     } catch (err) {
-      setError(err.response?.data || { message: "Something went wrong!" });
-      setLoading(false);
+      const errorMsg = err.response?.data?.message || "Something went wrong!";
+      setError({ message: errorMsg });
     }
   };
 
