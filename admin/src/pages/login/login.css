@@ -8,7 +8,7 @@
   align-items: center;
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   height: 100vh;
-  margin: 0;
+  margin: 0; /* Kept from original Admin */
   padding: 20px;
 }
 
@@ -17,14 +17,15 @@
   font-size: 0.9em;
   margin-bottom: 5px;
 }
-/* @mixin screen equivalent - used for .screen-1 */
+
 .screen-1 {
   background: hsl(0, 0%, 100%);
   padding: 3em;
-  display: flex;
+  display: flex; /* Kept from original Admin */
   flex-direction: column;
   border-radius: 20px;
-  box-shadow: 2px 4px 10px 1px rgba(173, 255, 47, 0.47);
+  /* Changed Green (173, 255, 47) to Blue (0, 53, 128) */
+  box-shadow: 2px 4px 10px 1px rgba(0, 53, 128, 0.47);
   gap: 2.5em;
   max-width: 400px;
   width: 100%;
@@ -36,25 +37,23 @@
   gap: 2em;
 }
 
-/* Logo/Title styling */
 .screen-1 .logo {
   text-align: center;
   margin-bottom: 1em;
 }
 
 .screen-1 .logo h1 {
-  color: #adff2f;
+  color: #003580; /* Blue instead of Greenyellow */
   font-size: 2.5em;
   font-weight: 700;
   margin: 0;
-  text-shadow: 2px 2px 4px rgba(173, 255, 47, 0.3);
+  text-shadow: 2px 2px 4px rgba(0, 53, 128, 0.3);
 }
 
-/* Common styles for .email and .password */
 .screen-1 .email,
 .screen-1 .password {
   background: hsl(0, 0%, 100%);
-  box-shadow: 2px 2px 8px rgba(173, 255, 47, 0.15);
+  box-shadow: 2px 2px 8px rgba(0, 53, 128, 0.15);
   padding: 1.5em;
   display: flex;
   flex-direction: column;
@@ -66,8 +65,8 @@
 
 .screen-1 .email:focus-within,
 .screen-1 .password:focus-within {
-  border-color: #adff2f;
-  box-shadow: 2px 4px 10px rgba(173, 255, 47, 0.25);
+  border-color: #003580; /* Blue instead of Greenyellow */
+  box-shadow: 2px 4px 10px rgba(0, 53, 128, 0.25);
 }
 
 .screen-1 .email label,
@@ -93,33 +92,21 @@
 .screen-1 .email input:focus,
 .screen-1 .password input:focus {
   background: #ffffff;
-  box-shadow: inset 0 0 0 2px rgba(173, 255, 47, 0.2);
-}
-
-.screen-1 .email input::placeholder,
-.screen-1 .password input::placeholder {
-  color: #6c757d;
-  font-size: 0.95em;
+  box-shadow: inset 0 0 0 2px rgba(0, 53, 128, 0.2);
 }
 
 .screen-1 .email ion-icon,
 .screen-1 .password ion-icon {
-  color: #adff2f;
+  color: #003580; /* Blue instead of Greenyellow */
   margin-bottom: -0.2em;
   font-size: 1.2em;
 }
 
-/* Inner structure for input/icon alignment */
 .screen-1 .email .sec-2,
 .screen-1 .password .sec-2 {
   display: flex;
   align-items: center;
   gap: 0.8em;
-}
-
-.screen-1 .email .sec-2 input,
-.screen-1 .password .sec-2 input {
-  flex-grow: 1;
 }
 
 .screen-1 .password .show-hide {
@@ -129,7 +116,7 @@
 }
 
 .screen-1 .password .show-hide:hover {
-  color: #adff2f;
+  color: #003580;
 }
 
 .login-button-container {
@@ -143,7 +130,7 @@
 
 .screen-1 .login {
   padding: 1em 3em;
-  background: linear-gradient(135deg, #adff2f 0%, #7cfc00 100%);
+  background: linear-gradient(135deg, #2c6eca 0%, #003580 100%);
   color: hsl(0, 0%, 100%);
   border: none;
   border-radius: 25px;
@@ -151,15 +138,15 @@
   font-size: 1.1em;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 2px 4px 10px rgba(173, 255, 47, 0.4);
+  box-shadow: 2px 4px 10px rgba(0, 53, 128, 0.4);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
-.screen-1 .login:hover:not(:disabled) {
+.screen-1 .login:not(:disabled):hover {
   transform: translateY(-2px);
-  box-shadow: 4px 6px 15px rgba(173, 255, 47, 0.6);
-  background: linear-gradient(135deg, #7cfc00 0%, #adff2f 100%);
+  box-shadow: 4px 6px 15px rgba(0, 53, 128, 0.6);
+  background: linear-gradient(135deg, #003580 0%, #2c6eca 100%);
 }
 
 .screen-1 .login:active:not(:disabled) {
@@ -193,44 +180,24 @@
   border-top: 1px solid #e9ecef;
 }
 
-.screen-1 .footer span {
-  cursor: pointer;
-  transition: color 0.3s ease;
-  font-weight: 500;
-}
-
 .screen-1 .footer span:hover {
-  color: #adff2f;
+  color: #003580;
 }
 
-/* Responsive design */
-@media (max-width: 480px) {
-  .screen-1 {
-    padding: 2em;
-    margin: 10px;
-  }
-
-  .screen-1 .logo h1 {
-    font-size: 2em;
-  }
-}
-/* --- Custom Forgot Password Modal Styles --- */
-
-/* Full screen overlay to dim the background */
+/* Modal Overlay & Content */
 .forgot-modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+  background-color: rgba(0, 0, 0, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Ensure it's above everything */
+  z-index: 1000;
 }
 
-/* Modal box itself */
 .forgot-modal-content {
   background-color: white;
   padding: 30px;
@@ -253,11 +220,10 @@
   color: #666;
 }
 
-/* Input group styling */
 .forgot-input-group {
   display: flex;
   align-items: center;
-  border-bottom: 2px solid greenyellow; /* Greenyellow line color */
+  border-bottom: 2px solid #003580; /* Blue instead of Greenyellow */
   padding: 5px 0;
   margin-bottom: 10px;
 }
@@ -265,7 +231,7 @@
 .forgot-icon {
   font-size: 1.2em;
   margin-right: 10px;
-  color: greenyellow; /* Greenyellow icon color */
+  color: #003580; /* Blue instead of Greenyellow */
 }
 
 .forgot-input {
@@ -276,65 +242,44 @@
   font-size: 1em;
 }
 
-/* Action buttons */
 .forgot-modal-actions {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
 }
 
-/* Action buttons */
-.forgot-modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-}
-
-.forgot-cancel-btn,
-.forgot-ok-btn {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 25px; /* Enhanced look */
-  cursor: pointer;
-  font-weight: 600; /* Enhanced look */
-  font-size: 14px;
-  transition: all 0.3s ease; /* Smooth transition for hover/active */
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* --- CANCEL Button Styling --- */
 .forgot-cancel-btn {
   background-color: #e9ecef;
   color: #495057;
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
 }
 
-.forgot-cancel-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 2px 4px 10px rgba(0, 0, 0, 0.2);
-  background-color: #dee2e6;
-}
-
-.forgot-cancel-btn:active {
-  transform: translateY(0);
-  box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-/* --- OK Button Styling (Greenyellow) --- */
 .forgot-ok-btn {
-  background: linear-gradient(135deg, #adff2f 0%, #7cfc00 100%);
-  color: hsl(0, 0%, 100%); /* Changed text color to white for visibility */
-  box-shadow: 2px 4px 10px rgba(173, 255, 47, 0.4);
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  background: linear-gradient(135deg, #2c6eca 0%, #003580 100%);
+  color: hsl(0, 0%, 100%);
+  box-shadow: 2px 4px 10px rgba(0, 53, 128, 0.4);
+  transition: all 0.3s ease;
 }
 
 .forgot-ok-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 4px 6px 15px rgba(173, 255, 47, 0.6);
-  background: linear-gradient(135deg, #7cfc00 0%, #adff2f 100%);
+  box-shadow: 4px 6px 15px rgba(0, 53, 128, 0.6);
+  background: linear-gradient(135deg, #003580 0%, #2c6eca 100%);
 }
 
-.forgot-ok-btn:active {
-  transform: translateY(0);
-  box-shadow: 2px 4px 10px rgba(173, 255, 47, 0.4);
+@media (max-width: 480px) {
+  .screen-1 {
+    padding: 2em;
+    margin: 10px;
+  }
 }
