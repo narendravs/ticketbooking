@@ -8,7 +8,7 @@ import {
   IoEyeOutline,
   IoEyeOffOutline,
 } from "react-icons/io5";
-import publicRequest from "../../api/axios";
+import publicRequest from "../../axios/axios";
 
 function Login() {
   const [credentials, setCredentials] = useState({
@@ -101,53 +101,6 @@ function Login() {
 
   const handleRegister = () => {
     navigate("/register");
-  };
-
-  const handleForgotEmailChange = (e) => {
-    setForgotEmail(e.target.value);
-    setError(null);
-  };
-
-  const handleForgotPassword = () => {
-    setIsForgotModalOpen(true);
-  };
-
-  const handleResetSubmit = async () => {
-    if (!forgotEmail) {
-      setError({
-        message: "Please enter a valid email.",
-      });
-      return;
-    }
-    // Simple RegEx to check for "text@text.domain" format
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (!emailRegex.test(forgotEmail)) {
-      setError({
-        message: "Please enter a valid email format (e.g., user@example.com).",
-      });
-      return;
-    }
-
-    try {
-      // await axios.post('/auth/forgot-password', { email: forgotEmail });
-      alert(
-        `Password reset link has been sent to ${forgotEmail}. Please check your email.`,
-      );
-      // Close the modal
-      setIsForgotModalOpen(false);
-    } catch (err) {
-      setError({ message: "Error processing request." });
-    } finally {
-      setForgotEmail("");
-    }
-  };
-
-  // New handler to close the modal without submitting
-  const handleResetCancel = () => {
-    setIsForgotModalOpen(false);
-    setForgotEmail("");
-    setError(null);
   };
 
   return (
