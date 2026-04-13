@@ -26,16 +26,16 @@ function Login() {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
   };
 
-  const { postData } = useFetch("/auth/login");
+  const { postData } = useFetch();
 
   const handleClick = async (e) => {
     e.preventDefault();
     try {
       dispatch({ type: "LOGIN_START" });
 
-      const data = await postData(credentials);
-
-      if (data.isAdmin) {
+      const data = await postData("/auth/login", credentials);
+      console.log("check data....", data);
+      if (data?.isAdmin) {
         dispatch({ type: "LOGIN_SUCCESS", payload: data });
         navigate("/");
       } else {
@@ -80,7 +80,7 @@ function Login() {
     }
 
     try {
-      await postData("/auth/forgot-password", { email: forgotEmail });
+      // await postData("/auth/forgot-password", { email: forgotEmail });
       alert(
         `Password reset link has been sent to ${forgotEmail}. Please check your email.`,
       );
