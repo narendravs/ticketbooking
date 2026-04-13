@@ -13,7 +13,7 @@ function Home() {
       <div>
         <Navbar />
       </div>
-      <div className="homeContainer">
+      <div className="container">
         <div className="sidebar">
           <Sidebar />
         </div>
