@@ -55,7 +55,7 @@ function Datatable() {
 
   const rows = [
     {
-      _id: "174746746wqiuuau88233863djkheje8y",
+      _id: "1",
       username: 1,
       email: "Gourav",
       country: 12,
@@ -159,7 +159,7 @@ function Datatable() {
       <div className="datatableTitle">
         <div className="title">
           {path}
-          <Link to={`/${path}/new`} className="link">
+          <Link to={`/${path}/new`} className="linkName">
             Add new
           </Link>
         </div>

@@ -21,13 +21,13 @@
   margin-bottom: 10px;
   /* position: absolute; */
 }
-.link {
+.linkName {
   margin: 10px;
   text-decoration: none;
-  color: green;
+  color: #003580;
   font-size: 16px;
   font-weight: 400;
-  border: 1px solid green;
+  border: 1px solid #003580;
   padding: 5px;
   border-radius: 5px;
   cursor: pointer;
