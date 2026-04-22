@@ -11,15 +11,18 @@ import {
   updateHotel,
   getFeatured,
 } from "../controllers/hotels.js";
+import { upload } from "../utils/cloudinaryUpload.js";
 
 const router = Router();
 
 //create hotel
-router.post("/", verifyAdmin, createHotel);
+router.post("/", verifyAdmin, upload.array("files", 10), createHotel);
 //update hotel
 router.put("/:id", verifyAdmin, updateHotel);
 //delete hotel
 router.delete("/:id", verifyAdmin, deleteHotel);
+//find the hotel
+router.get("/:id", getHotel);
 //find the hotel
 router.get("/find/:id", getHotel);
 //get all the hotel
