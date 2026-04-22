@@ -4,8 +4,25 @@ import Room from "../models/Room.js";
 
 export const createHotel = async (req, res, next) => {
   try {
-    const newHotel = new Hotel(req.body);
-    await newHotel.save();
+  // 1. Prepare the hotel data from req.body
+    const hotelData = { ...req.body };
+
+    // 2. Extract URLs from Cloudinary
+    // req.files is an array of objects provided by Multer
+    if (req.files && req.files.length > 0) {
+      hotelData.photos = req.files.map((file) => file.path);
+    }
+
+    // 3. Handle 'rooms' if sent as a string (FormData often stringifies arrays)
+    if (typeof req.body.rooms === "string") {
+      hotelData.rooms = JSON.parse(req.body.rooms);
+    }
+
+    // 4. Create and Save
+    const newHotel = new Hotel(hotelData);
+    const savedHotel = await newHotel.save();
+
+    res.status(200).json(savedHotel);
     res.status(200).json("Hotel has been created");
   } catch (error) {
     next(error);
@@ -16,7 +33,7 @@ export const updateHotel = async (req, res, next) => {
     const hotel = await Hotel.findByIdAndUpdate(
       req.params.id,
       { $set: req.body },
-      { new: true }
+      { new: true },
     );
     res.status(200).json(hotel);
   } catch (error) {
@@ -60,9 +77,9 @@ export const getHotelRooms = async (req, res, next) => {
     const list = await Promise.all(
       hotel.rooms.map((room) => {
         return Room.findById(room);
-      })
+      }),
     );
-    console.log(list);
+
     res.status(200).json(list);
   } catch (error) {
     next(error);
@@ -78,7 +95,7 @@ export const countByCity = async (req, res, next) => {
           { $match: { city: city } },
           { $group: { _id: "$city", num_hotels: { $sum: 1 } } },
         ]);
-      })
+      }),
     );
     res.status(200).json(list);
   } catch (error) {
