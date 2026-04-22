@@ -5,16 +5,20 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { AuthContextProvider } from "./context/AuthContext";
 import { DarkModeContextProvider } from "./context/darkModeContext";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
+const queryClient = new QueryClient();
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <AuthContextProvider>
-      <DarkModeContextProvider>
-        <App />
-      </DarkModeContextProvider>
-    </AuthContextProvider>
-  </React.StrictMode>
+    <QueryClientProvider client={queryClient}>
+      <AuthContextProvider>
+        <DarkModeContextProvider>
+          <App />
+        </DarkModeContextProvider>
+      </AuthContextProvider>
+    </QueryClientProvider>
+  </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
