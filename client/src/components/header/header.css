@@ -38,9 +38,11 @@
   border: none;
   padding: 10px;
   cursor: pointer;
+  padding: 10px 20px;
+  min-width: 100px;
 }
 .headerSearch {
-  height: 30px;
+  height: auto;
   background-color: white;
   border: 3px solid #febb02;
   display: flex;
@@ -52,11 +54,16 @@
   bottom: -25px;
   width: 100%;
   max-width: 1024px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 .headerSearchItem {
   display: flex;
   align-items: center;
   gap: 10px;
+  flex: 1;
+  min-width: 150px;
+  justify-content: flex-end;
 }
 .headerIcon {
   color: lightgray;
@@ -65,6 +72,7 @@
   border: none;
   outline: none;
   color: lightgray;
+  width: 100%;
 }
 .headerSearchText {
   color: lightgray;
@@ -108,4 +116,20 @@
 }
 .optionCounterButton:disabled {
   cursor: not-allowed;
+}
+/* Fix mobile view for Date and Options popups */
+@media (max-width: 768px) {
+  .headerSearch {
+    position: relative; /* Move search bar into the blue flow on mobile */
+    bottom: 0;
+    margin-top: 20px;
+    width: 100%; /* Leave some margin */
+  }
+
+  .date,
+  .options {
+    top: auto; /* Prevent overlapping on mobile */
+    left: 0;
+    width: 100%;
+  }
 }

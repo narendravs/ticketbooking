@@ -111,7 +111,7 @@ function Header({ type }) {
                 >
                   {`${format(dates[0].startDate, "MM/dd/yyyy")} to ${format(
                     dates[0].endDate,
-                    "MM/dd/yyyy"
+                    "MM/dd/yyyy",
                   )}`}
                 </span>
                 {openDate && (

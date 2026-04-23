@@ -49,6 +49,8 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "postcss-import": "^16.1.1",
+    "postcss-reporter": "^7.1.0",
     "postcss-safe-parser": "^7.0.1"
   }
 }
