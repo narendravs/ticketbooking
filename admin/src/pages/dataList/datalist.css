@@ -1,15 +1,4 @@
-.mainContainer {
-  display: flex;
-  flex-direction: column;
-  /* height: max-content;
-  width: max-content; */
-}
-.list {
-  display: flex;
-  flex-direction: row;
-  margin: 10px;
-}
-
-.listContainer {
-  flex: 6;
+.dataList {
+  width: 100%;
+  background-color: var(--sidebar-bg);
 }
