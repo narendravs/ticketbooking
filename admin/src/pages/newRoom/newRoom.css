@@ -8,19 +8,22 @@
   display: flex;
   background-color: var(--sidebar-bg);
   border-radius: 8px;
+  width: auto;
+  box-sizing: border-box;
+  flex-direction: column; /* Stack children vertically */
 }
 
 /* Header Text */
 .top h1 {
+  margin: 0;
+  padding: 0;
   color: #555;
   font-size: 20px;
-  margin: 0;
 }
 
 /* Form Layout Section */
 .bottom .right {
   flex: 2;
-  width: 100%;
 }
 
 .bottom .right form {
@@ -28,6 +31,9 @@
   flex-wrap: wrap;
   gap: 30px;
   justify-content: space-between;
+  padding: 5px;
+  margin: 5px;
+  align-items: center;
 }
 
 /* Input Group Styling */

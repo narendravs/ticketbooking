@@ -148,6 +148,11 @@
 }
 /* MOBILE RESPONSIVENESS */
 @media (max-width: 480px) {
+  .topSingle {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
   .details .detailItem {
     flex-direction: column; /* Stack Label on top of Input */
     align-items: flex-start;
@@ -157,5 +162,12 @@
     flex: 0 0 auto; /* Label takes only as much space as text needs */
     width: 100%;
     margin-bottom: 5px;
+  }
+}
+@media (max-width: 1024px) {
+  .topSingle {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }
