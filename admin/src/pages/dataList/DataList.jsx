@@ -4,7 +4,7 @@ import "./datalist.css";
 
 function List() {
   return (
-    <div className="mainContainer">
+    <div className="dataList">
       <Datatable />
     </div>
   );
