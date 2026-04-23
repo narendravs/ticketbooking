@@ -14,6 +14,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background-color: var(--sidebar-bg);
 }
 
 .widget .left .title,
@@ -45,6 +46,7 @@
   display: flex;
   align-items: center;
   font-size: 14px;
+  background-color: var(--sidebar-bg);
 }
 
 .widget .percentage.positive {
