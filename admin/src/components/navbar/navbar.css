@@ -18,23 +18,27 @@
   cursor: pointer;
   padding: 5px 10px;
   top: 40px;
-  left: 0;
+  right: -25px;
   position: absolute;
-  border: 1px solid #ccc;
-  background-color: #003580; /* Navy Blue theme option */
+  border: 1px solid #003580;
+  background-color: white; /* Navy Blue theme option */
   border-radius: 5px;
   padding: 4px 8px;
-  font-size: 12px;
-  font-weight: 600;
+  font-size: 13px;
+  font-weight: 500;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   transition:
     background-color 0.3s,
     color 0.3s;
   opacity: 1;
-  color: grey;
+  color: gray;
   letter-spacing: 0.5px;
 }
-
+.logout-container:hover {
+  color: white !important;
+  background-color: #003580 !important;
+  border: 2px solid #003580;
+}
 .logout-container.is-closed {
   background-color: transparent;
   border: none;
@@ -69,6 +73,7 @@
 }
 .icon {
   font-size: 20px;
+  cursor: pointer;
 }
 .avatar {
   width: 30px;
@@ -89,4 +94,78 @@
   right: -5px;
   font-weight: bold;
   font-size: 10px;
+}
+.dark .logout-container {
+  background-color: #333; /* Darker background */
+  color: #ececec; /* Light text */
+  border: 1px solid #7451f8; /* Different border for contrast */
+}
+
+/* Ensure focus/hover stands out in dark mode */
+.dark .logout-container:hover {
+  background-color: #7451f8;
+  color: white;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 768px) {
+  .navbar {
+    height: auto; /* Allow navbar to expand if items wrap */
+    padding: 10px 0;
+  }
+
+  .wrapper {
+    padding: 10px; /* Reduce padding on mobile */
+    flex-direction: row; /* Keep items in a row, or use column if you have many items */
+    gap: 10px;
+  }
+
+  /* Hide the search bar on very small screens or make it smaller */
+  .search {
+    display: none; /* Common practice: hide search on mobile or move to a menu */
+  }
+
+  .item {
+    margin-right: 15px; /* Reduce spacing between icons */
+  }
+
+  .item:last-child {
+    margin-right: 0;
+  }
+
+  /* Adjust Logout Container for touch targets */
+  .logout-container {
+    top: 35px;
+    right: 0; /* Align to edge on mobile */
+    padding: 8px 12px; /* Larger touch target */
+    font-size: 12px;
+  }
+  .items {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+  .avatar {
+    width: 25px;
+    height: 25px;
+  }
+}
+
+/* Extra Small Devices */
+@media (max-width: 480px) {
+  .wrapper {
+    justify-content: space-between;
+  }
+
+  /* Hide text descriptions in items if any, keep only icons */
+  .item span {
+    display: none;
+  }
+  .items {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    gap: 10px;
+  }
 }

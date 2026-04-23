@@ -2,19 +2,24 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 
 const useFetch = (url) => {
-  const [data, setData] = useState();
-  const [loading, setLoading] = useState();
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState();
   const BASE_URL = process.env.REACT_APP_API_URL;
 
   // 1. GET Function (Auto triggered)
   useEffect(() => {
     if (!url) return;
+    setData([]); // Reset data to empty array when path changes to prevent old data artifacts
+    setError(undefined);
     const fetchData = async () => {
       setLoading(true);
       try {
         const fullUrl = `${BASE_URL}${url}`;
-        const res = await axios.get(fullUrl);
+        console.log("Full url for rooms hotel users", fullUrl);
+        const res = await axios.get(fullUrl, {
+          withCredentials: true,
+        });
         console.log(res.data);
         setData(res.data);
       } catch (error) {

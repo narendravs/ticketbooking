@@ -1,9 +1,9 @@
 export const userColumns = [
-  { field: "_id", headerName: "ID", width: 70 },
+  { field: "_id", headerName: "ID", flex: 1 },
   {
     field: "user",
     headerName: "User",
-    width: 230,
+    flex: 2,
     renderCell: (params) => {
       return (
         <div className="cellWithImg">
@@ -20,71 +20,71 @@ export const userColumns = [
   {
     field: "email",
     headerName: "Email",
-    width: 230,
+    flex: 1,
   },
   {
     field: "city",
     headerName: "City",
-    width: 100,
+    flex: 1,
   },
 
   {
     field: "country",
     headerName: "Country",
-    width: 100,
+    flex: 1,
   },
 
   {
     field: "phone",
     headerName: "Phone",
-    width: 150,
+    flex: 1,
   },
 ];
 
 export const hotelColumns = [
-  { field: "_id", headerName: "ID", width: 250 },
+  { field: "_id", headerName: "ID", flex: 1 },
   {
     field: "name",
     headerName: "Name",
-    width: 150,
+    flex: 2,
   },
   {
     field: "type",
     headerName: "Type",
-    width: 100,
+    flex: 1,
   },
   {
     field: "title",
     headerName: "Title",
-    width: 230,
+    flex: 1,
   },
   {
     field: "city",
     headerName: "City",
-    width: 100,
+    flex: 1,
   },
 ];
 
 export const roomColumns = [
-  { field: "_id", headerName: "ID", width: 70 },
+  { field: "_id", headerName: "ID", flex: 1 },
   {
     field: "title",
     headerName: "Title",
-    width: 230,
+    flex: 2,
   },
   {
     field: "desc",
     headerName: "Description",
-    width: 200,
+    flex: 1,
   },
   {
     field: "price",
     headerName: "Price",
-    width: 100,
+    flex: 1,
   },
   {
     field: "maxPeople",
     headerName: "Max People",
-    width: 100,
+    flex: 1,
   },
 ];

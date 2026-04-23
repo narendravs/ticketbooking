@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./navbar.css";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
@@ -16,6 +16,27 @@ function Navbar() {
   const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
+
+  // 1. Create a ref for the profile item container
+  const menuRef = useRef();
+
+  // 2. Add effect to handle click outside
+  useEffect(() => {
+    const handler = (e) => {
+      // If the menu is open and the click is NOT inside the menuRef (avatar + button)
+      if (open && menuRef.current && !menuRef.current.contains(e.target)) {
+        setOpen(false);
+      }
+    };
+
+    // Attach listener
+    document.addEventListener("mousedown", handler);
+
+    // Clean up listener on unmount
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    };
+  }, [open]);
 
   return (
     <div className="navbar">
@@ -49,26 +70,26 @@ function Navbar() {
           <div className="item">
             <ListOutlinedIcon className="icon" />
           </div>
-          <div className="item">
+          <div className="item" ref={menuRef}>
             <img
               src="https://images.pexels.com/photos/941693/pexels-photo-941693.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500"
               alt=""
               className="avatar"
               onClick={() => setOpen(!open)}
             />
-            <div className={`logout-container ${!open ? "is-closed" : ""}`}>
-              {open && (
-                <div
-                  className="logout"
-                  onClick={() => {
-                    localStorage.removeItem("user");
-                    navigate("/login");
-                  }}
-                >
-                  Logout
-                </div>
-              )}
-            </div>
+
+            {open && (
+              <button
+                className={`logout-container ${!open ? "is-closed" : ""}`}
+                tabIndex="0"
+                onClick={() => {
+                  localStorage.removeItem("user");
+                  navigate("/login");
+                }}
+              >
+                Logout
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -1,24 +1,12 @@
-.single {
-  display: flex;
-  flex-direction: column;
-}
-.single .singleContainer {
-  display: flex;
-  flex-direction: row;
-  flex: 6;
-}
-
-.single .singleContainer .sidebar {
-  flex: 1;
-}
-
-.single .top {
+.topSingle {
   padding: 20px;
   display: flex;
+  flex-direction: row;
   gap: 20px;
+  background-color: var(--sidebar-bg);
 }
 
-.single .top .left {
+.left {
   flex: 1;
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
@@ -26,24 +14,42 @@
   position: relative;
 }
 
-.single .top .editButton {
+.right {
+  flex: 1;
+  background-color: var(--sidebar-bg);
+  -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
+  box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
+  padding: 20px;
+  position: relative;
+}
+
+.editButton {
   position: absolute;
   top: 0;
   right: 0;
   padding: 5px;
-  font-size: 12px;
-  color: #7451f8;
-  background-color: #7551f818;
-  cursor: pointer;
-  border-radius: 0px 0px 0px 5px;
 }
 
-.single .top .item {
+.editButton .names {
+  /* Reset default button appearance */
+  background: none;
+  border: none;
+  padding: 0;
+  font: inherit; /* Inherits font-family and weight from parent */
+
+  /* Your custom text styles */
+  font-size: 12px;
+  color: #7451f8;
+  cursor: pointer;
+  outline: none;
+  text-decoration: none; /* Optional: adds a link-like feel */
+}
+.item {
   display: flex;
   gap: 20px;
 }
 
-.single .top .item .itemImg {
+.item .itemImg {
   width: 100px;
   height: 100px;
   border-radius: 50%;
@@ -51,40 +57,117 @@
   background-color: #7451f8;
 }
 
-.single .top .details .itemTitle {
+.details .itemTitle {
   margin-bottom: 10px;
   color: #555;
+  font-size: medium;
+  font-weight: 600;
 }
 
-.single .top .details .detailItem {
-  margin-bottom: 10px;
-  font-size: 14px;
+.details .detailItem {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: row; /* Default for Desktop */
+  align-items: center;
+  gap: 10px;
 }
 
-.single .top .details .itemKey {
+.details .itemKey {
   font-weight: bold;
   color: gray;
-  margin-right: 5px;
+  /* Use flex-basis for a "flexible" fixed width */
+  flex: 0 0 120px;
 }
-
-.single .top .details .itemValue {
+.details .noData {
+  font-size: 1rem;
+  font-weight: 600;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #003580;
+}
+.details .itemValue {
+  flex: 1;
+  /* Remove hardcoded max-width, or use a percentage */
+  min-width: 0; /* Prevents flex children from overflowing */
+  width: 100%;
+  color: gray;
+  font-weight: 500;
+}
+.editInput {
+  font-size: small;
   font-weight: 300;
+  color: #003580;
+  border: 1px solid #ccc; /* Added for visibility */
+  outline: none; /* Removes default browser blue glow */
+  padding: 2px 5px;
+  width: max-content;
+  height: max-content;
+}
+.editInput:focus {
+  border-color: #003580;
+  border-width: 1px;
 }
 
-.single .right {
-  flex: 2;
-  background-color: whitesmoke;
-}
-
-.single .bottom {
+.bottom {
   -webkit-box-shadow: 2px 4px 10px 1px rgba(0, 0, 0, 0.47);
   box-shadow: 2px 4px 10px 1px rgba(201, 201, 201, 0.47);
   padding: 20px;
   margin: 10px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-.single .title1 {
+.title1 {
   font-size: 16px;
   color: lightgray;
   margin-bottom: 20px;
+}
+/* Container inside the toast */
+.customToast {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 500;
+  color: #003580;
+}
+
+/* The OK button inside the toast */
+.toastButton {
+  background-color: #003580;
+  color: white;
+  border: none;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+.toastButton:hover {
+  opacity: 0.9;
+}
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 480px) {
+  .topSingle {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .details .detailItem {
+    flex-direction: column; /* Stack Label on top of Input */
+    align-items: flex-start;
+  }
+
+  .details .itemKey {
+    flex: 0 0 auto; /* Label takes only as much space as text needs */
+    width: 100%;
+    margin-bottom: 5px;
+  }
+}
+@media (max-width: 1024px) {
+  .topSingle {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
 }
